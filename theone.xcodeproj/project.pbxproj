@@ -17,6 +17,7 @@
 		05F1FA1B281B479700836816 /* FormField.swift in Sources */ = {isa = PBXBuildFile; fileRef = 05F1FA1A281B479700836816 /* FormField.swift */; };
 		05FBF02D281B8CCE000C641E /* SignInView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 05FBF02C281B8CCE000C641E /* SignInView.swift */; };
 		05FBF031281B9E2A000C641E /* ButtonModifiers.swift in Sources */ = {isa = PBXBuildFile; fileRef = 05FBF030281B9E2A000C641E /* ButtonModifiers.swift */; };
+		E132DB816DD5779B1C0607B5 /* Pods_theone.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 6EFE22A7DC7C4B2DD42B1042 /* Pods_theone.framework */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -32,6 +33,9 @@
 		05F1FA1A281B479700836816 /* FormField.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FormField.swift; sourceTree = "<group>"; };
 		05FBF02C281B8CCE000C641E /* SignInView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SignInView.swift; sourceTree = "<group>"; };
 		05FBF030281B9E2A000C641E /* ButtonModifiers.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ButtonModifiers.swift; sourceTree = "<group>"; };
+		5FCB0A10948C04DD5CB1D74F /* Pods-theone.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-theone.release.xcconfig"; path = "Target Support Files/Pods-theone/Pods-theone.release.xcconfig"; sourceTree = "<group>"; };
+		6EFE22A7DC7C4B2DD42B1042 /* Pods_theone.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_theone.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		FF4B8490F4046F3CE19E85C1 /* Pods-theone.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-theone.debug.xcconfig"; path = "Target Support Files/Pods-theone/Pods-theone.debug.xcconfig"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -39,6 +43,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				E132DB816DD5779B1C0607B5 /* Pods_theone.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -58,6 +63,8 @@
 			children = (
 				05F1FA08281B446100836816 /* theone */,
 				05F1FA07281B446100836816 /* Products */,
+				AB54752DF683806EACDFA74B /* Pods */,
+				421CD0E65C4603402E052EA3 /* Frameworks */,
 			);
 			sourceTree = "<group>";
 		};
@@ -111,6 +118,24 @@
 			path = Views;
 			sourceTree = "<group>";
 		};
+		421CD0E65C4603402E052EA3 /* Frameworks */ = {
+			isa = PBXGroup;
+			children = (
+				6EFE22A7DC7C4B2DD42B1042 /* Pods_theone.framework */,
+			);
+			name = Frameworks;
+			sourceTree = "<group>";
+		};
+		AB54752DF683806EACDFA74B /* Pods */ = {
+			isa = PBXGroup;
+			children = (
+				FF4B8490F4046F3CE19E85C1 /* Pods-theone.debug.xcconfig */,
+				5FCB0A10948C04DD5CB1D74F /* Pods-theone.release.xcconfig */,
+			);
+			name = Pods;
+			path = Pods;
+			sourceTree = "<group>";
+		};
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
@@ -118,9 +143,11 @@
 			isa = PBXNativeTarget;
 			buildConfigurationList = 05F1FA15281B446400836816 /* Build configuration list for PBXNativeTarget "theone" */;
 			buildPhases = (
+				0962A1308C9F163F4CE4549D /* [CP] Check Pods Manifest.lock */,
 				05F1FA02281B446100836816 /* Sources */,
 				05F1FA03281B446100836816 /* Frameworks */,
 				05F1FA04281B446100836816 /* Resources */,
+				F1EE50AABFE12CAFB654ED67 /* [CP] Embed Pods Frameworks */,
 			);
 			buildRules = (
 			);
@@ -175,6 +202,48 @@
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXResourcesBuildPhase section */
+
+/* Begin PBXShellScriptBuildPhase section */
+		0962A1308C9F163F4CE4549D /* [CP] Check Pods Manifest.lock */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputFileListPaths = (
+			);
+			inputPaths = (
+				"${PODS_PODFILE_DIR_PATH}/Podfile.lock",
+				"${PODS_ROOT}/Manifest.lock",
+			);
+			name = "[CP] Check Pods Manifest.lock";
+			outputFileListPaths = (
+			);
+			outputPaths = (
+				"$(DERIVED_FILE_DIR)/Pods-theone-checkManifestLockResult.txt",
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "diff \"${PODS_PODFILE_DIR_PATH}/Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n# This output is used by Xcode 'outputs' to avoid re-running this script phase.\necho \"SUCCESS\" > \"${SCRIPT_OUTPUT_FILE_0}\"\n";
+			showEnvVarsInLog = 0;
+		};
+		F1EE50AABFE12CAFB654ED67 /* [CP] Embed Pods Frameworks */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputFileListPaths = (
+				"${PODS_ROOT}/Target Support Files/Pods-theone/Pods-theone-frameworks-${CONFIGURATION}-input-files.xcfilelist",
+			);
+			name = "[CP] Embed Pods Frameworks";
+			outputFileListPaths = (
+				"${PODS_ROOT}/Target Support Files/Pods-theone/Pods-theone-frameworks-${CONFIGURATION}-output-files.xcfilelist",
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${PODS_ROOT}/Target Support Files/Pods-theone/Pods-theone-frameworks.sh\"\n";
+			showEnvVarsInLog = 0;
+		};
+/* End PBXShellScriptBuildPhase section */
 
 /* Begin PBXSourcesBuildPhase section */
 		05F1FA02281B446100836816 /* Sources */ = {
@@ -312,6 +381,7 @@
 		};
 		05F1FA16281B446400836816 /* Debug */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = FF4B8490F4046F3CE19E85C1 /* Pods-theone.debug.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
@@ -333,6 +403,7 @@
 		};
 		05F1FA17281B446400836816 /* Release */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = 5FCB0A10948C04DD5CB1D74F /* Pods-theone.release.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;

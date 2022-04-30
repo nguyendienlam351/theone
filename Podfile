@@ -7,6 +7,9 @@ target 'theone' do
 
   # Pods for theone
 
-pod 
+ pod 'Firebase/Auth'
+ pod 'Firebase/Storage'
+ pod 'Firebase/Firestore'
+ pod 'URLImage'
 
 end
