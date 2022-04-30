@@ -32,7 +32,7 @@ struct FormField: View {
                 .disableAutocorrection(true)
                 .autocapitalization(.none)
                 
-            }.overlay(RoundedRectangle(cornerRadius: 10).stroke(Color.gray, lineWidth: 4)).padding()
+            }.overlay(RoundedRectangle(cornerRadius: 10).stroke(Color.gray, lineWidth: 4))
         }
     }
 }
