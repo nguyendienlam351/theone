@@ -17,6 +17,9 @@ struct SignUpView: View {
     @State private var showingImagePicker = false
     @State private var imageData: Data = Data()
     @State private var sourceType: UIImagePickerController.SourceType = .photoLibrary
+    @State private var error: String = ""
+    @State private var showingAlert = false
+    @State private var alertTitle: String = "Oh no 😭"
     
     
     func loadImage() {
@@ -24,6 +27,42 @@ struct SignUpView: View {
             return
         }
         profileImage = inputImage
+    }
+    
+    func errorCheck() -> String? {
+        if email.trimmingCharacters(in: .whitespaces).isEmpty ||
+            password.trimmingCharacters(in: .whitespaces).isEmpty ||
+            username.trimmingCharacters(in: .whitespaces).isEmpty ||
+            imageData.isEmpty {
+            
+            return "Please fill in all  fields and provide an image"
+        }
+        return nil
+    }
+    
+    func clear() {
+        self.email = ""
+        self.username = ""
+        self.password = ""
+    }
+    
+    func signUp() {
+        if let error = errorCheck() {
+            self.error = error
+            self.showingAlert = true
+            return
+        }
+        
+        AuthService.signUp(username: username, email: email, password: password, imageData: imageData, onSuccess: {
+            (user) in
+            self.clear()
+        }) {
+            (errorMessage) in
+            print("Error \(errorMessage)")
+            self.error = errorMessage
+            self.showingAlert = true
+            return
+        }
     }
     
     var body: some View {
@@ -66,9 +105,14 @@ struct SignUpView: View {
                     FormField(value: $password, icon: "lock.fill", placeholder: "Password",isSecure: true)
                 }
                 
-                Button(action: {}) {
+                Button(action:signUp) {
                     Text("Sign Up").font(.title).modifier(ButtonModifiers())
+                }.alert(isPresented: $showingAlert) {
+                    Alert(title: Text(alertTitle),
+                          message: Text(error),
+                          dismissButton: .default(Text("OK")))
                 }
+                
             }.padding()
             
         }.sheet(isPresented: $showingImagePicker, onDismiss: loadImage){
