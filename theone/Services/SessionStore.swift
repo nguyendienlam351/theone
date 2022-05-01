@@ -40,4 +40,21 @@ class SessionStore: ObservableObject {
         })
     }
     
+    func logout() {
+        do {
+            try Auth.auth().signOut()
+        } catch {
+            
+        }
+    }
+    
+    func umbind() {
+        if let handle = handle {
+            Auth.auth().removeStateDidChangeListener(handle)
+        }
+    }
+    
+    deinit {
+        umbind()
+    }
 }

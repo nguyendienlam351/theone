@@ -8,14 +8,21 @@
 import SwiftUI
 
 struct ContentView: View {
-    @State private var mail = ""
-    @State private var password = ""
+    @EnvironmentObject var session: SessionStore
+    
+    func listen() {
+        session.listen()
+    }
     
     var body: some View {
-        VStack {
-            FormField(value: $mail, icon: "mail", placeholder: "E-mail")
-            FormField(value: $password, icon: "lock", placeholder: "Password", isSecure: true)
-        }
+        Group {
+            if session.session != nil {
+                HomeView()
+            }
+            else {
+                SignInView()
+            }
+        }.onAppear(perform: listen)
     }
 }
 

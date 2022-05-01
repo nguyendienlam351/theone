@@ -15,6 +15,7 @@
 		05660402281E45230058523C /* AuthService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 05660401281E45230058523C /* AuthService.swift */; };
 		05660405281E455A0058523C /* StorageService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 05660404281E455A0058523C /* StorageService.swift */; };
 		05660408281E95E00058523C /* SessionStore.swift in Sources */ = {isa = PBXBuildFile; fileRef = 05660407281E95E00058523C /* SessionStore.swift */; };
+		057D0B6C281F07940057C787 /* HomeView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 057D0B6B281F07940057C787 /* HomeView.swift */; };
 		05F1FA0A281B446100836816 /* theoneApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = 05F1FA09281B446100836816 /* theoneApp.swift */; };
 		05F1FA0C281B446100836816 /* ContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 05F1FA0B281B446100836816 /* ContentView.swift */; };
 		05F1FA0E281B446400836816 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 05F1FA0D281B446400836816 /* Assets.xcassets */; };
@@ -34,6 +35,7 @@
 		05660401281E45230058523C /* AuthService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AuthService.swift; sourceTree = "<group>"; };
 		05660404281E455A0058523C /* StorageService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StorageService.swift; sourceTree = "<group>"; };
 		05660407281E95E00058523C /* SessionStore.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SessionStore.swift; sourceTree = "<group>"; };
+		057D0B6B281F07940057C787 /* HomeView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeView.swift; sourceTree = "<group>"; };
 		05F1FA06281B446100836816 /* theone.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = theone.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		05F1FA09281B446100836816 /* theoneApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = theoneApp.swift; sourceTree = "<group>"; };
 		05F1FA0B281B446100836816 /* ContentView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContentView.swift; sourceTree = "<group>"; };
@@ -145,6 +147,7 @@
 			children = (
 				05FBF02C281B8CCE000C641E /* SignInView.swift */,
 				050F9854281D071A00295BEC /* SignUpView.swift */,
+				057D0B6B281F07940057C787 /* HomeView.swift */,
 			);
 			path = Views;
 			sourceTree = "<group>";
@@ -282,6 +285,7 @@
 			files = (
 				05F1FA1B281B479700836816 /* FormField.swift in Sources */,
 				056603FE281E3B540058523C /* Extensions.swift in Sources */,
+				057D0B6C281F07940057C787 /* HomeView.swift in Sources */,
 				05660408281E95E00058523C /* SessionStore.swift in Sources */,
 				05F1FA0C281B446100836816 /* ContentView.swift in Sources */,
 				056603FA281E3A900058523C /* UserModel.swift in Sources */,
