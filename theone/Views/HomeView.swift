@@ -29,7 +29,7 @@ struct CustomTabView: View {
                     .tag("house.fill")
                 Search()
                     .tag("magnifyingglass")
-                Add()
+                Post()
                     .tag("camera.viewfinder")
                 Notifications()
                     .tag("heart.fill")
