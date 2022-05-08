@@ -24,18 +24,20 @@ struct CustomTabView: View {
     
     var body: some View {
         ZStack(alignment: Alignment(horizontal: .center, vertical: .bottom)) {
-            TabView(selection: $selectedTab) {
-                Main()
-                    .tag("house.fill")
-                Search()
-                    .tag("magnifyingglass")
-                Post()
-                    .tag("camera.viewfinder")
-                Notifications()
-                    .tag("heart.fill")
-                Profile()
-                    .tag("person.fill")
-            }
+            NavigationView{
+                TabView(selection: $selectedTab) {
+                    Main()
+                        .tag("house.fill")
+                    Search()
+                        .tag("magnifyingglass")
+                    Post()
+                        .tag("camera.viewfinder")
+                    Notifications()
+                        .tag("heart.fill")
+                    Profile()
+                        .tag("person.fill")
+                }
+            }.accentColor(.pink)
             .tabViewStyle(PageTabViewStyle(indexDisplayMode: .never))
             .ignoresSafeArea(.all, edges: .bottom)
             

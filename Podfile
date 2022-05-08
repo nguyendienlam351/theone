@@ -11,5 +11,6 @@ target 'theone' do
  pod 'Firebase/Storage'
  pod 'Firebase/Firestore'
  pod 'URLImage'
+ pod 'SDWebImageSwiftUI'
 
 end
