@@ -22,6 +22,10 @@
 		05660408281E95E00058523C /* SessionStore.swift in Sources */ = {isa = PBXBuildFile; fileRef = 05660407281E95E00058523C /* SessionStore.swift */; };
 		056963F8282314E70093E2D2 /* PostModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 056963F7282314E70093E2D2 /* PostModel.swift */; };
 		056963FB282319030093E2D2 /* PostService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 056963FA282319030093E2D2 /* PostService.swift */; };
+		056E85FE28279A4E009398DC /* PostCardImage.swift in Sources */ = {isa = PBXBuildFile; fileRef = 056E85FD28279A4E009398DC /* PostCardImage.swift */; };
+		056E860128279EF9009398DC /* PostCard.swift in Sources */ = {isa = PBXBuildFile; fileRef = 056E860028279EF9009398DC /* PostCard.swift */; };
+		056E86042827BB58009398DC /* ProfileService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 056E86032827BB58009398DC /* ProfileService.swift */; };
+		056E86072827BC6C009398DC /* PostCardService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 056E86062827BC6C009398DC /* PostCardService.swift */; };
 		057D0B6C281F07940057C787 /* HomeView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 057D0B6B281F07940057C787 /* HomeView.swift */; };
 		05BB958C282745B50049101A /* ProfileHeader.swift in Sources */ = {isa = PBXBuildFile; fileRef = 05BB958B282745B50049101A /* ProfileHeader.swift */; };
 		05F1FA0A281B446100836816 /* theoneApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = 05F1FA09281B446100836816 /* theoneApp.swift */; };
@@ -50,6 +54,10 @@
 		05660407281E95E00058523C /* SessionStore.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SessionStore.swift; sourceTree = "<group>"; };
 		056963F7282314E70093E2D2 /* PostModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PostModel.swift; sourceTree = "<group>"; };
 		056963FA282319030093E2D2 /* PostService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PostService.swift; sourceTree = "<group>"; };
+		056E85FD28279A4E009398DC /* PostCardImage.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PostCardImage.swift; sourceTree = "<group>"; };
+		056E860028279EF9009398DC /* PostCard.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PostCard.swift; sourceTree = "<group>"; };
+		056E86032827BB58009398DC /* ProfileService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfileService.swift; sourceTree = "<group>"; };
+		056E86062827BC6C009398DC /* PostCardService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PostCardService.swift; sourceTree = "<group>"; };
 		057D0B6B281F07940057C787 /* HomeView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeView.swift; sourceTree = "<group>"; };
 		05BB958B282745B50049101A /* ProfileHeader.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfileHeader.swift; sourceTree = "<group>"; };
 		05F1FA06281B446100836816 /* theone.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = theone.app; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -103,6 +111,8 @@
 				05660404281E455A0058523C /* StorageService.swift */,
 				05660407281E95E00058523C /* SessionStore.swift */,
 				056963FA282319030093E2D2 /* PostService.swift */,
+				056E86032827BB58009398DC /* ProfileService.swift */,
+				056E86062827BC6C009398DC /* PostCardService.swift */,
 			);
 			path = Services;
 			sourceTree = "<group>";
@@ -157,6 +167,8 @@
 				05F1FA1A281B479700836816 /* FormField.swift */,
 				05FBF030281B9E2A000C641E /* ButtonModifiers.swift */,
 				05BB958B282745B50049101A /* ProfileHeader.swift */,
+				056E85FD28279A4E009398DC /* PostCardImage.swift */,
+				056E860028279EF9009398DC /* PostCard.swift */,
 			);
 			path = Component;
 			sourceTree = "<group>";
@@ -309,6 +321,7 @@
 			files = (
 				0557F7282821753A00213886 /* Main.swift in Sources */,
 				0557F725282174BB00213886 /* Profile.swift in Sources */,
+				056E860128279EF9009398DC /* PostCard.swift in Sources */,
 				05F1FA1B281B479700836816 /* FormField.swift in Sources */,
 				056603FE281E3B540058523C /* Extensions.swift in Sources */,
 				057D0B6C281F07940057C787 /* HomeView.swift in Sources */,
@@ -319,9 +332,12 @@
 				05FBF031281B9E2A000C641E /* ButtonModifiers.swift in Sources */,
 				0557F722282172A100213886 /* Notifications.swift in Sources */,
 				050F9859281D145500295BEC /* ImagePicker.swift in Sources */,
+				056E86072827BC6C009398DC /* PostCardService.swift in Sources */,
 				05FBF02D281B8CCE000C641E /* SignInView.swift in Sources */,
+				056E85FE28279A4E009398DC /* PostCardImage.swift in Sources */,
 				05660402281E45230058523C /* AuthService.swift in Sources */,
 				05BB958C282745B50049101A /* ProfileHeader.swift in Sources */,
+				056E86042827BB58009398DC /* ProfileService.swift in Sources */,
 				056963F8282314E70093E2D2 /* PostModel.swift in Sources */,
 				056963FB282319030093E2D2 /* PostService.swift in Sources */,
 				050F9855281D071A00295BEC /* SignUpView.swift in Sources */,

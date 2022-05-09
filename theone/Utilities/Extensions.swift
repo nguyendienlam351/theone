@@ -43,3 +43,14 @@ extension String {
         return stringArray
     }
 }
+
+extension Date {
+    func timeAgo() -> String {
+        let formater = DateComponentsFormatter()
+        formater.unitsStyle = .full
+        formater.allowedUnits = [.year, .month, .day, .hour, .minute, .second]
+        formater.zeroFormattingBehavior = .dropAll
+        formater.maximumUnitCount = 1
+        return String(format: formater.string(from: self, to: Date()) ?? "", locale: .current)
+    }
+}

@@ -14,7 +14,7 @@ import FirebaseStorage
 class PostService {
     static var Post = AuthService.storeRoot.collection("posts")
     static var AllPost = AuthService.storeRoot.collection("allPost")
-    static var Timeline = AuthService.storeRoot.collection("Timeline")
+    static var Timeline = AuthService.storeRoot.collection("timeline")
     
     static func PostsUserId(userId: String) -> DocumentReference {
         return Post.document(userId)
@@ -37,5 +37,30 @@ class PostService {
         metadata.contentType = "image/jpg"
         
         StorageService.savePostPhoto(userId: userId, caption: caption, postId: postId, imageData: imageData, metaData: metadata, storagePostRef: storagePostRef, onSuccess: onSuccess, onError: onError)
+    }
+    
+    static func loadUserPost(userId: String, onSuccess: @escaping(_ posts: [PostModel]) ->Void) {
+        
+        PostService.PostsUserId(userId: userId).collection("posts").getDocuments {
+            (snapshot, error) in
+            
+            guard let snap = snapshot else {
+                print("Error")
+                return
+            }
+            
+            var posts = [PostModel]()
+            
+            for doc in snap.documents {
+                let dict = doc.data()
+                
+                guard let decoder = try? PostModel.init(fromDictionary: dict) else {
+                    return
+                }
+                
+                posts.append(decoder)
+            }
+            onSuccess(posts)
+        }
     }
 }
