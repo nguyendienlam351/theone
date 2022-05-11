@@ -49,10 +49,11 @@ struct SignInView: View {
     var body: some View {
         NavigationView {
             VStack(spacing: 20) {
-                Image(systemName: "camera")
-                    .font(.system(size: 60, weight: .black, design: .monospaced))
+                Image("logo").resizable()
+                    .scaledToFit()
+                    .frame(width: 150, height: 150, alignment: .trailing)
                 
-                VStack(alignment: .leading) {
+                VStack(alignment: .center) {
                     Text("Welcome Back").font(.system(size: 32, weight: .heavy))
                     Text("SignIn To Continue").font(.system(size: 16, weight: .medium))
                     

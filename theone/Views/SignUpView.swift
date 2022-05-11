@@ -70,10 +70,7 @@ struct SignUpView: View {
     var body: some View {
         ScrollView {
             VStack(spacing: 20) {
-                Image(systemName: "camera")
-                    .font(.system(size: 60, weight: .black, design: .monospaced))
-                
-                VStack(alignment: .leading) {
+                VStack(alignment: .center) {
                     Text("Welcome").font(.system(size: 32, weight: .heavy))
                     Text("Sign Up To Start").font(.system(size: 16, weight: .medium))
                 }
@@ -92,7 +89,7 @@ struct SignUpView: View {
                         else {
                             Image(systemName: "person.circle.fill").resizable()
                                 .clipShape(Circle())
-                                .frame(width: 100, height: 100)
+                                .frame(width: 150, height: 150)
                                 .padding(.top, 20)
                                 .onTapGesture {
                                     self.showingActionSheet = true

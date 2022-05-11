@@ -9,6 +9,8 @@
 /* Begin PBXBuildFile section */
 		050F9855281D071A00295BEC /* SignUpView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 050F9854281D071A00295BEC /* SignUpView.swift */; };
 		050F9859281D145500295BEC /* ImagePicker.swift in Sources */ = {isa = PBXBuildFile; fileRef = 050F9858281D145500295BEC /* ImagePicker.swift */; };
+		055630E9282A2E4F009C5605 /* SearchBar.swift in Sources */ = {isa = PBXBuildFile; fileRef = 055630E8282A2E4F009C5605 /* SearchBar.swift */; };
+		055630EC282A3290009C5605 /* SearchSevice.swift in Sources */ = {isa = PBXBuildFile; fileRef = 055630EB282A3290009C5605 /* SearchSevice.swift */; };
 		0557F71A282171D600213886 /* Search.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0557F719282171D600213886 /* Search.swift */; };
 		0557F71E2821726900213886 /* Post.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0557F71D2821726900213886 /* Post.swift */; };
 		0557F722282172A100213886 /* Notifications.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0557F721282172A100213886 /* Notifications.swift */; };
@@ -26,6 +28,7 @@
 		056E860128279EF9009398DC /* PostCard.swift in Sources */ = {isa = PBXBuildFile; fileRef = 056E860028279EF9009398DC /* PostCard.swift */; };
 		056E86042827BB58009398DC /* ProfileService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 056E86032827BB58009398DC /* ProfileService.swift */; };
 		056E86072827BC6C009398DC /* PostCardService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 056E86062827BC6C009398DC /* PostCardService.swift */; };
+		0571D3B5282BC9C60078B0CE /* UserProfile.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0571D3B4282BC9C60078B0CE /* UserProfile.swift */; };
 		057D0B6C281F07940057C787 /* HomeView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 057D0B6B281F07940057C787 /* HomeView.swift */; };
 		05BB958C282745B50049101A /* ProfileHeader.swift in Sources */ = {isa = PBXBuildFile; fileRef = 05BB958B282745B50049101A /* ProfileHeader.swift */; };
 		05F1FA0A281B446100836816 /* theoneApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = 05F1FA09281B446100836816 /* theoneApp.swift */; };
@@ -41,6 +44,8 @@
 /* Begin PBXFileReference section */
 		050F9854281D071A00295BEC /* SignUpView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SignUpView.swift; sourceTree = "<group>"; };
 		050F9858281D145500295BEC /* ImagePicker.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ImagePicker.swift; sourceTree = "<group>"; };
+		055630E8282A2E4F009C5605 /* SearchBar.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearchBar.swift; sourceTree = "<group>"; };
+		055630EB282A3290009C5605 /* SearchSevice.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearchSevice.swift; sourceTree = "<group>"; };
 		0557F719282171D600213886 /* Search.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Search.swift; sourceTree = "<group>"; };
 		0557F71D2821726900213886 /* Post.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Post.swift; sourceTree = "<group>"; };
 		0557F721282172A100213886 /* Notifications.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Notifications.swift; sourceTree = "<group>"; };
@@ -58,6 +63,7 @@
 		056E860028279EF9009398DC /* PostCard.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PostCard.swift; sourceTree = "<group>"; };
 		056E86032827BB58009398DC /* ProfileService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfileService.swift; sourceTree = "<group>"; };
 		056E86062827BC6C009398DC /* PostCardService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PostCardService.swift; sourceTree = "<group>"; };
+		0571D3B4282BC9C60078B0CE /* UserProfile.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserProfile.swift; sourceTree = "<group>"; };
 		057D0B6B281F07940057C787 /* HomeView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeView.swift; sourceTree = "<group>"; };
 		05BB958B282745B50049101A /* ProfileHeader.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfileHeader.swift; sourceTree = "<group>"; };
 		05F1FA06281B446100836816 /* theone.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = theone.app; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -113,6 +119,7 @@
 				056963FA282319030093E2D2 /* PostService.swift */,
 				056E86032827BB58009398DC /* ProfileService.swift */,
 				056E86062827BC6C009398DC /* PostCardService.swift */,
+				055630EB282A3290009C5605 /* SearchSevice.swift */,
 			);
 			path = Services;
 			sourceTree = "<group>";
@@ -169,6 +176,7 @@
 				05BB958B282745B50049101A /* ProfileHeader.swift */,
 				056E85FD28279A4E009398DC /* PostCardImage.swift */,
 				056E860028279EF9009398DC /* PostCard.swift */,
+				055630E8282A2E4F009C5605 /* SearchBar.swift */,
 			);
 			path = Component;
 			sourceTree = "<group>";
@@ -184,6 +192,7 @@
 				0557F721282172A100213886 /* Notifications.swift */,
 				0557F724282174BB00213886 /* Profile.swift */,
 				0557F7272821753A00213886 /* Main.swift */,
+				0571D3B4282BC9C60078B0CE /* UserProfile.swift */,
 			);
 			path = Views;
 			sourceTree = "<group>";
@@ -332,7 +341,10 @@
 				05FBF031281B9E2A000C641E /* ButtonModifiers.swift in Sources */,
 				0557F722282172A100213886 /* Notifications.swift in Sources */,
 				050F9859281D145500295BEC /* ImagePicker.swift in Sources */,
+				055630E9282A2E4F009C5605 /* SearchBar.swift in Sources */,
 				056E86072827BC6C009398DC /* PostCardService.swift in Sources */,
+				055630EC282A3290009C5605 /* SearchSevice.swift in Sources */,
+				0571D3B5282BC9C60078B0CE /* UserProfile.swift in Sources */,
 				05FBF02D281B8CCE000C641E /* SignInView.swift in Sources */,
 				056E85FE28279A4E009398DC /* PostCardImage.swift in Sources */,
 				05660402281E45230058523C /* AuthService.swift in Sources */,
