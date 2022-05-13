@@ -17,19 +17,18 @@ struct PostCardImage: View {
                 WebImage(url: URL(string: post.profile)!)
                     .resizable()
                     .aspectRatio(contentMode: /*@START_MENU_TOKEN@*/.fill/*@END_MENU_TOKEN@*/)
-                    .scaledToFit()
+                    .scaledToFill()
                     .clipShape(/*@START_MENU_TOKEN@*/Circle()/*@END_MENU_TOKEN@*/)
-                    .frame(width: 60, height: 60, alignment: .center)
-                    .shadow(color: .gray, radius: 3)
+                    .frame(width: 50, height: 50, alignment: .center)
+                    .shadow(color: .gray, radius: 3).padding(.leading)
                 
                 VStack(alignment: .leading, spacing: 4) {
                     Text(post.username).font(.headline)
                     Text(Date(timeIntervalSince1970: post.date).timeAgo() + " ago").font(.subheadline)
                         .foregroundColor(.gray)
-                }.padding(.leading, 10)
+                }
                 
-            }.padding(.leading)
-            .padding(.top, 16)
+            }.padding(.top, 16)
             
             Text(post.caption).lineLimit(nil)
                 .padding(.leading, 16)

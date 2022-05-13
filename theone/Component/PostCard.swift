@@ -23,7 +23,7 @@ struct PostCard: View {
     
     var body: some View {
         VStack(alignment: .leading) {
-            HStack(spacing: 15) {
+            HStack(spacing: 30) {
                 Button(action: {
                     self.animation = true
                     
@@ -40,20 +40,23 @@ struct PostCard: View {
                                                     })
                 }) {
                     Image(systemName: (self.postCardService.isLiked) ? "heart.fill" : "heart")
+                        .resizable()
+                        .scaledToFit()
                         .frame(width: 25, height: 25, alignment: /*@START_MENU_TOKEN@*/.center/*@END_MENU_TOKEN@*/)
                         .foregroundColor((self.postCardService.isLiked) ? .red : .black)
-                }.padding().scaleEffect(animation ? animationScale : 1)
+                }.scaleEffect(animation ? animationScale : 1)
                 .animation(.easeIn(duration: duration))
                 
                 Image(systemName: "bubble.right")
                     .resizable()
+                    .scaledToFit()
                     .aspectRatio(contentMode: .fit)
                     .frame(width: 25, height: 25, alignment: /*@START_MENU_TOKEN@*/.center/*@END_MENU_TOKEN@*/)
                 Spacer()
             }.padding(.leading, 16)
             
             if(self.postCardService.post.likeCount > 0) {
-                Text("\(self.postCardService.post.likeCount) likes")
+                Text("\(self.postCardService.post.likeCount) likes").padding(.horizontal)
             }
             
             Text("View Comment").font(.caption).padding(.leading)

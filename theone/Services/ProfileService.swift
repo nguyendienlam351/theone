@@ -13,6 +13,8 @@ class ProfileService: ObservableObject {
     @Published var following = 0
     @Published var followers = 0
     
+    @Published var followCheck = false
+    
     static var following = AuthService.storeRoot.collection("following")
     static var followers = AuthService.storeRoot.collection("followers")
     
@@ -24,13 +26,34 @@ class ProfileService: ObservableObject {
         return followers.document(userId).collection("followers")
     }
     
+    static func followingId(userId: String) -> DocumentReference {
+        return following.document(Auth.auth().currentUser!.uid).collection("following").document(userId)
+    }
+    
+    static func followersId(userId: String) -> DocumentReference {
+        return followers.document(userId).collection("followers").document(Auth.auth().currentUser!.uid)
+    }
+    
+    func followState(userId: String) {
+        ProfileService.followersId(userId: userId).getDocument {
+            (document, error) in
+            
+            if let doc = document , doc.exists {
+                self.followCheck = true
+            }
+            else {
+                self.followCheck = false
+            }
+        }
+    }
+    
     func loadUserPost(userId: String) {
         
         PostService.loadUserPost(userId: userId) {
             (posts) in
             self.posts = posts
         }
-        
+        followState(userId: userId)
         follows(userId: userId)
         followers(userId: userId)
     }

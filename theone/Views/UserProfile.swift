@@ -26,7 +26,7 @@ struct UserProfile: View {
     var body: some View {
         ScrollView {
             VStack(alignment: .leading) {
-                SearchBar(value: $value).padding()
+                SearchBar(value: $value).padding(.vertical)
                     .onChange(of: value, perform: {
                         new in
                         searchUser()
@@ -36,15 +36,16 @@ struct UserProfile: View {
                     ForEach(users, id:\.uid) {
                         user in
                         
-                        HStack {
-                            WebImage(url: URL(string: user.profileImageUrl))
-                                .resizable()
-                                .scaledToFill()
-                                .clipShape(/*@START_MENU_TOKEN@*/Circle()/*@END_MENU_TOKEN@*/)
-                                .frame(width: 60, height: 60, alignment: .center)
-                                .padding()
-                            
-                            Text(user.username).font(.subheadline).bold()
+                        NavigationLink(destination: UsersProfileView(user: user)) {
+                            HStack(spacing: 30) {
+                                WebImage(url: URL(string: user.profileImageUrl))
+                                    .resizable()
+                                    .scaledToFill()
+                                    .clipShape(/*@START_MENU_TOKEN@*/Circle()/*@END_MENU_TOKEN@*/)
+                                    .frame(width: 60, height: 60, alignment: .center)
+                                
+                                Text(user.username).font(.headline).bold()
+                            }.padding(.horizontal)
                         }
                         Divider().background(Color.black)
                     }

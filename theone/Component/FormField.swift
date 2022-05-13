@@ -27,7 +27,7 @@ struct FormField: View {
                     
                 }.font(Font.system(size: 20, design: .monospaced))
                 .foregroundColor(.black)
-                .textFieldStyle(RoundedBorderTextFieldStyle())
+                .textFieldStyle(PlainTextFieldStyle())
                 .multilineTextAlignment(.leading)
                 .disableAutocorrection(true)
                 .autocapitalization(.none)

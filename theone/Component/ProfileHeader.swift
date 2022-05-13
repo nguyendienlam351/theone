@@ -20,15 +20,16 @@ struct ProfileHeader: View {
                 if user != nil {
                     WebImage(url: URL(string: user!.profileImageUrl))
                         .resizable()
-                        .scaledToFit()
+                        .scaledToFill()
                         .clipShape(/*@START_MENU_TOKEN@*/Circle()/*@END_MENU_TOKEN@*/)
-                        .frame(width: /*@START_MENU_TOKEN@*/100/*@END_MENU_TOKEN@*/, height: /*@START_MENU_TOKEN@*/100/*@END_MENU_TOKEN@*/, alignment: .trailing)
+                        .frame(width: 80, height: 80, alignment: .center)
+                        .shadow(color: .black, radius: 3)
                         .padding(.leading)
                     
                     Text(user!.username).font(.headline).bold().padding(.leading)
                 } else {
                     Color.init(red: 0.9, green: 0.9, blue: 0.9)
-                        .frame(width: /*@START_MENU_TOKEN@*/100/*@END_MENU_TOKEN@*/, height: /*@START_MENU_TOKEN@*/100/*@END_MENU_TOKEN@*/, alignment: .trailing)
+                        .frame(width: 80, height: 80, alignment: .center)
                         .padding(.leading)
                 }
             }
@@ -54,7 +55,7 @@ struct ProfileHeader: View {
                     Spacer()
                 }
             }
-        }
+        }.padding(.top)
         
     }
 }

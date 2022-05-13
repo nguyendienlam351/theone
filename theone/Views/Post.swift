@@ -59,20 +59,20 @@ struct Post: View {
     }
     
     var body: some View {
-        VStack {
+        ScrollView {
             Text("Upload A Post").font(.largeTitle)
             
             VStack {
                 if postImage != nil {
                     postImage!.resizable()
-                        .frame(width: 300, height: 200)
+                        .frame(height: 200)
                         .onTapGesture {
                             self.showingActionSheet = true
                         }
                 }
                 else {
                     Image(systemName: "photo.fill").resizable()
-                        .frame(width: 300, height: 200)
+                        .frame(height: 200)
                         .onTapGesture {
                             self.showingActionSheet = true
                         }
@@ -83,16 +83,15 @@ struct Post: View {
                 .frame(height: 200)
                 .padding(4)
                 .background(RoundedRectangle(cornerRadius: 8).stroke(Color.black))
-                .padding(.horizontal)
             
             Button(action: uploadPost) {
-                Text("Upload Post").font(/*@START_MENU_TOKEN@*/.title/*@END_MENU_TOKEN@*/).modifier(ButtonModifiers())
+                Text("Upload Post").font(.title).bold().modifier(ButtonModifiers())
             }.alert(isPresented: $showingAlert) {
                 Alert(title: Text(alertTitle),
                       message: Text(error),
                       dismissButton: .default(Text("OK")))
             }
-        }.padding()
+        }.padding(.horizontal).padding(.top)
         .sheet(isPresented: $showingImagePicker, onDismiss: loadImage){
             ImagePicker(pickerImage: self.$pickedImage,
                         showImagePicker: self.$showingImagePicker,

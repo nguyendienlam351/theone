@@ -25,7 +25,7 @@ struct Profile: View {
                               followers: $profileService.followers)
                 
                 Button(action:{}) {
-                    Text("Edit Profile").font(.title).modifier(ButtonModifiers())
+                    Text("Edit Profile").font(.title).bold().modifier(ButtonModifiers())
                         .padding(.horizontal)
                 }
                 

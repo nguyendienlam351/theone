@@ -74,7 +74,7 @@ struct SignInView: View {
                 HStack {
                     Text("New?")
                     NavigationLink(
-                    destination: SignUpView()) {
+                        destination: SignUpView()) {
                         Text("Create an Account.").font(.system(size: 20, weight: .semibold))
                             .foregroundColor(.black)
                     }
