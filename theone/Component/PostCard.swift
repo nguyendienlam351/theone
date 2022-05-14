@@ -47,11 +47,14 @@ struct PostCard: View {
                 }.scaleEffect(animation ? animationScale : 1)
                 .animation(.easeIn(duration: duration))
                 
-                Image(systemName: "bubble.right")
-                    .resizable()
-                    .scaledToFit()
-                    .aspectRatio(contentMode: .fit)
-                    .frame(width: 25, height: 25, alignment: /*@START_MENU_TOKEN@*/.center/*@END_MENU_TOKEN@*/)
+                NavigationLink(destination: CommentView(post: self.postCardService.post,
+                                                        postId: self.postCardService.post.postId)) {
+                    Image(systemName: "bubble.right")
+                        .resizable()
+                        .scaledToFit()
+                        .aspectRatio(contentMode: .fit)
+                        .frame(width: 25, height: 25, alignment: /*@START_MENU_TOKEN@*/.center/*@END_MENU_TOKEN@*/)
+                }
                 Spacer()
             }.padding(.leading, 16)
             

@@ -39,6 +39,24 @@ class PostService {
         StorageService.savePostPhoto(userId: userId, caption: caption, postId: postId, imageData: imageData, metaData: metadata, storagePostRef: storagePostRef, onSuccess: onSuccess, onError: onError)
     }
     
+    static func loadPost(postId: String, onSuccess: @escaping(_ post: PostModel) -> Void) {
+        PostService.AllPost.document(postId).getDocument {
+            (snapshot, err) in
+            guard let snap = snapshot else {
+                print("error")
+                return
+            }
+            
+            let dict = snap.data()
+            
+            guard let decoded = try? PostModel.init(fromDictionary: dict!) else {
+                return
+            }
+            
+            onSuccess(decoded)
+        }
+    }
+    
     static func loadUserPost(userId: String, onSuccess: @escaping(_ posts: [PostModel]) ->Void) {
         
         PostService.PostsUserId(userId: userId).collection("posts").getDocuments {

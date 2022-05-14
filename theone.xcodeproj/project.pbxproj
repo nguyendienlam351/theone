@@ -36,6 +36,9 @@
 		0571D3B5282BC9C60078B0CE /* UserProfile.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0571D3B4282BC9C60078B0CE /* UserProfile.swift */; };
 		057D0B6C281F07940057C787 /* HomeView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 057D0B6B281F07940057C787 /* HomeView.swift */; };
 		05BB958C282745B50049101A /* ProfileHeader.swift in Sources */ = {isa = PBXBuildFile; fileRef = 05BB958B282745B50049101A /* ProfileHeader.swift */; };
+		05CE0C9B282FBC8500A52C3E /* CommentCard.swift in Sources */ = {isa = PBXBuildFile; fileRef = 05CE0C9A282FBC8500A52C3E /* CommentCard.swift */; };
+		05CE0C9E282FBE5400A52C3E /* CommentInput.swift in Sources */ = {isa = PBXBuildFile; fileRef = 05CE0C9D282FBE5400A52C3E /* CommentInput.swift */; };
+		05CE0CA1282FDE0D00A52C3E /* CommentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 05CE0CA0282FDE0D00A52C3E /* CommentView.swift */; };
 		05F1FA0A281B446100836816 /* theoneApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = 05F1FA09281B446100836816 /* theoneApp.swift */; };
 		05F1FA0C281B446100836816 /* ContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 05F1FA0B281B446100836816 /* ContentView.swift */; };
 		05F1FA0E281B446400836816 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 05F1FA0D281B446400836816 /* Assets.xcassets */; };
@@ -76,6 +79,9 @@
 		0571D3B4282BC9C60078B0CE /* UserProfile.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserProfile.swift; sourceTree = "<group>"; };
 		057D0B6B281F07940057C787 /* HomeView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeView.swift; sourceTree = "<group>"; };
 		05BB958B282745B50049101A /* ProfileHeader.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfileHeader.swift; sourceTree = "<group>"; };
+		05CE0C9A282FBC8500A52C3E /* CommentCard.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CommentCard.swift; sourceTree = "<group>"; };
+		05CE0C9D282FBE5400A52C3E /* CommentInput.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CommentInput.swift; sourceTree = "<group>"; };
+		05CE0CA0282FDE0D00A52C3E /* CommentView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CommentView.swift; sourceTree = "<group>"; };
 		05F1FA06281B446100836816 /* theone.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = theone.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		05F1FA09281B446100836816 /* theoneApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = theoneApp.swift; sourceTree = "<group>"; };
 		05F1FA0B281B446100836816 /* ContentView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContentView.swift; sourceTree = "<group>"; };
@@ -191,6 +197,8 @@
 				056E860028279EF9009398DC /* PostCard.swift */,
 				055630E8282A2E4F009C5605 /* SearchBar.swift */,
 				0564F5A8282CED7600214003 /* FollowButton.swift */,
+				05CE0C9A282FBC8500A52C3E /* CommentCard.swift */,
+				05CE0C9D282FBE5400A52C3E /* CommentInput.swift */,
 			);
 			path = Component;
 			sourceTree = "<group>";
@@ -208,6 +216,7 @@
 				0557F7272821753A00213886 /* Main.swift */,
 				0571D3B4282BC9C60078B0CE /* UserProfile.swift */,
 				056392EC282D139F00B05E79 /* UsersProfileView.swift */,
+				05CE0CA0282FDE0D00A52C3E /* CommentView.swift */,
 			);
 			path = Views;
 			sourceTree = "<group>";
@@ -361,6 +370,7 @@
 				055630EC282A3290009C5605 /* SearchSevice.swift in Sources */,
 				0571D3B5282BC9C60078B0CE /* UserProfile.swift in Sources */,
 				056392F0282DF07200B05E79 /* CommentModel.swift in Sources */,
+				05CE0CA1282FDE0D00A52C3E /* CommentView.swift in Sources */,
 				056392ED282D139F00B05E79 /* UsersProfileView.swift in Sources */,
 				056392F3282DF17300B05E79 /* CommentService.swift in Sources */,
 				05FBF02D281B8CCE000C641E /* SignInView.swift in Sources */,
@@ -369,6 +379,7 @@
 				05BB958C282745B50049101A /* ProfileHeader.swift in Sources */,
 				056E86042827BB58009398DC /* ProfileService.swift in Sources */,
 				056963F8282314E70093E2D2 /* PostModel.swift in Sources */,
+				05CE0C9E282FBE5400A52C3E /* CommentInput.swift in Sources */,
 				0564F5A6282CD6F900214003 /* FollowService.swift in Sources */,
 				056963FB282319030093E2D2 /* PostService.swift in Sources */,
 				050F9855281D071A00295BEC /* SignUpView.swift in Sources */,
@@ -376,6 +387,7 @@
 				05660405281E455A0058523C /* StorageService.swift in Sources */,
 				05F1FA0A281B446100836816 /* theoneApp.swift in Sources */,
 				0557F71A282171D600213886 /* Search.swift in Sources */,
+				05CE0C9B282FBC8500A52C3E /* CommentCard.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

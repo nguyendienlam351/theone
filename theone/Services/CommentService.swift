@@ -109,7 +109,7 @@ class CommentService: ObservableObject {
             return
         }
         
-        postComment(comment: comment, username: username, profile: profile, ownerId: currentUserId, postId: postId, onSuccess: {
+        postComment(comment: comment, username: username, profile: profile, ownerId: currentUserId, postId: post.postId, onSuccess: {
             onSuccess()
         }) {
             (err) in
