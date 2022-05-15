@@ -24,6 +24,42 @@ class StorageService {
         return storageProfile.child(userId)
     }
     
+    static func editProfile(userId: String, username: String, bio: String, imageData: Data, metaData: StorageMetadata, storageProfileImageRef: StorageReference, onError: @escaping(_ errorMessage: String) -> Void) {
+        
+        storageProfileImageRef.putData(imageData, metadata: metaData) {
+            (StorageMetadata, error) in
+            
+            if error != nil {
+                onError(error!.localizedDescription)
+                return
+            }
+            
+            storageProfileImageRef.downloadURL{
+                (url, error) in
+                if let metaImageUrl = url?.absoluteString {
+                    
+                    if let changeRequest = Auth.auth().currentUser?.createProfileChangeRequest() {
+                        changeRequest.photoURL = url
+                        changeRequest.displayName = username
+                        changeRequest.commitChanges {
+                            (error) in
+                            if error != nil {
+                                onError(error!.localizedDescription)
+                                return
+                            }
+                        }
+                    }
+                    let firestoreUserId = AuthService.getUserId(userId: userId)
+                    firestoreUserId.updateData([
+                        "profileImageUrl" : metaImageUrl,
+                        "username": username,
+                        "bio": bio
+                    ])
+                }
+            }
+        }
+    }
+    
     static func saveProfileImage(userId: String, username: String, email: String, imageData: Data, metaData: StorageMetadata, storageProfileImageRef: StorageReference, onSuccess: @escaping(_ user: User) -> Void, onError: @escaping(_ errorMessage: String) -> Void) {
         
         storageProfileImageRef.putData(imageData, metadata: metaData) {
@@ -78,39 +114,32 @@ class StorageService {
                 onError(error!.localizedDescription)
                 return
             }
-            storagePostRef.putData(imageData, metadata: metaData) {
-                (StorageMetadata, error) in
-                
-                if error != nil {
-                    onError(error!.localizedDescription)
-                    return
-                }
-                storagePostRef.downloadURL{
-                    (url, error) in
-                    if let metaImageUrl = url?.absoluteString {
-                        let firestorePostRef = PostService.PostsUserId(userId: userId).collection("posts").document(postId)
-                        
-                        let post = PostModel.init(caption: caption, likes: [:], geoLocation: "", ownerId: userId, postId: postId, username: Auth.auth().currentUser!.displayName!, profile: Auth.auth().currentUser!.photoURL!.absoluteString, mediaUrl: metaImageUrl, date: Date().timeIntervalSince1970, likeCount: 0)
-                        
-                        guard let dict = try? post.asDictionary() else {
+            storagePostRef.downloadURL{
+                (url, error) in
+                if let metaImageUrl = url?.absoluteString {
+                    let firestorePostRef = PostService.PostsUserId(userId: userId).collection("posts").document(postId)
+                    
+                    let post = PostModel.init(caption: caption, likes: [:], geoLocation: "", ownerId: userId, postId: postId, username: Auth.auth().currentUser!.displayName!, profile: Auth.auth().currentUser!.photoURL!.absoluteString, mediaUrl: metaImageUrl, date: Date().timeIntervalSince1970, likeCount: 0)
+                    
+                    guard let dict = try? post.asDictionary() else {
+                        return
+                    }
+                    
+                    firestorePostRef.setData(dict) {
+                        (error) in
+                        if error != nil {
+                            onError(error!.localizedDescription)
                             return
                         }
                         
-                        firestorePostRef.setData(dict) {
-                            (error) in
-                            if error != nil {
-                                onError(error!.localizedDescription)
-                                return
-                            }
-                            
-                            PostService.timelineUserId(userId: userId).collection("timeline").document(postId).setData(dict)
-                            
-                            PostService.AllPost.document(postId).setData(dict)
-                            onSuccess()
-                        }
+                        PostService.timelineUserId(userId: userId).collection("timeline").document(postId).setData(dict)
+                        
+                        PostService.AllPost.document(postId).setData(dict)
+                        onSuccess()
                     }
                 }
             }
         }
+        
     }
 }

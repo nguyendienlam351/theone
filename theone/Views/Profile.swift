@@ -13,6 +13,7 @@ struct Profile: View {
     @EnvironmentObject var session: SessionStore
     @State private var selecttion = 1
     @StateObject var profileService = ProfileService()
+    @State var isLinkActive = false
     
     let threeItem = [GridItem(), GridItem(), GridItem()]
     
@@ -24,9 +25,14 @@ struct Profile: View {
                               following: $profileService.following,
                               followers: $profileService.followers)
                 
-                Button(action:{}) {
-                    Text("Edit Profile").font(.title).bold().modifier(ButtonModifiers())
-                        .padding(.horizontal)
+                VStack(alignment: .leading) {
+                    Text(session.session?.bio ?? "").font(.headline).lineLimit(1)
+                }
+                NavigationLink(destination: EditProfile(session: self.session.session), isActive: $isLinkActive) {
+                    Button(action: {self.isLinkActive = true}) {
+                        Text("Edit Profile").font(.title).bold().modifier(ButtonModifiers())
+                            .padding(.horizontal)
+                    }
                 }
                 
                 Picker("", selection: $selecttion) {
