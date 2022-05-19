@@ -16,23 +16,29 @@ struct FormField: View {
     var body: some View {
         Group {
             HStack {
-                Image(systemName: icon).padding()
+                Image(systemName: icon).foregroundColor(Color.primary).padding()
                 Group {
                     if isSecure {
-                        SecureField(placeholder, text: $value)
+                        SecureField("", text: $value)
+                            .placeholder(when: value.isEmpty) {
+                                Text(placeholder).foregroundColor(Color.thirdly)
+                        }
                     }
                     else {
-                        TextField(placeholder, text: $value)
+                        TextField("", text: $value)
+                            .placeholder(when: value.isEmpty) {
+                                Text(placeholder).foregroundColor(Color.thirdly)
+                        }
                     }
                     
                 }.font(Font.system(size: 20, design: .monospaced))
-                .foregroundColor(.black)
+                .foregroundColor(.primary)
                 .textFieldStyle(PlainTextFieldStyle())
                 .multilineTextAlignment(.leading)
                 .disableAutocorrection(true)
                 .autocapitalization(.none)
                 
-            }.overlay(RoundedRectangle(cornerRadius: 10).stroke(Color.gray, lineWidth: 4))
+            }.overlay(RoundedRectangle(cornerRadius: 10).stroke(Color.secondary, lineWidth: 4))
         }
     }
 }

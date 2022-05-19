@@ -14,7 +14,9 @@ class PostCardService: ObservableObject {
     @Published var isLiked = false
     
     func hasLikePost() {
-        isLiked = (post.likes["\(Auth.auth().currentUser!.uid)"] == true) ? true : false
+        if Auth.auth().currentUser?.uid != nil {
+            isLiked = (post.likes["\(Auth.auth().currentUser!.uid)"] == true) ? true : false
+        }
     }
     
     func like() {

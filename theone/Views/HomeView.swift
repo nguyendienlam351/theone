@@ -9,6 +9,13 @@ import SwiftUI
 
 struct HomeView: View {
     
+    init() {
+        UISegmentedControl.appearance().selectedSegmentTintColor = .primary
+        UISegmentedControl.appearance().setTitleTextAttributes([.foregroundColor: UIColor.thirdly], for: .selected)
+        UISegmentedControl.appearance().setTitleTextAttributes([.foregroundColor: UIColor.primary], for: .normal)
+        UISegmentedControl.appearance().backgroundColor = .thirdly
+    }
+    
     var body: some View {
         VStack {
             NavigationView {
@@ -16,12 +23,12 @@ struct HomeView: View {
                     .navigationTitle("")
                     .navigationBarTitleDisplayMode(.inline)
                     .navigationBarHidden(true)
-            }.accentColor(.red)
+            }.accentColor(.primary)
         }
     }
 }
 
-var tabs = ["house.fill", "magnifyingglass", "camera.viewfinder", "heart.fill", "person.fill"]
+var tabs = ["house.fill", "magnifyingglass", "camera.viewfinder", "person.fill"]
 
 struct CustomTabView: View {
     @State var selectedTab = "house.fill"
@@ -32,12 +39,10 @@ struct CustomTabView: View {
             TabView(selection: $selectedTab) {
                 Main()
                     .tag("house.fill")
-                Search()
+                UserProfile()
                     .tag("magnifyingglass")
                 Post()
                     .tag("camera.viewfinder")
-                Notifications()
-                    .tag("heart.fill")
                 Profile()
                     .tag("person.fill")
             }
@@ -56,15 +61,15 @@ struct CustomTabView: View {
             }
             .padding(.horizontal, 25)
             .padding(.vertical, 5)
-            .background(Color.white)
+            .background(Color.thirdly)
             .clipShape(Capsule())
-            .shadow(color: Color.black.opacity(0.15), radius: 5, x: 5, y: 5)
-            .shadow(color: Color.black.opacity(0.15), radius: 5, x: -5, y: -5)
+            .shadow(color: Color.secondary.opacity(0.15), radius: 5, x: 5, y: 5)
+            .shadow(color: Color.secondary.opacity(0.15), radius: 5, x: -5, y: -5)
             .padding(.horizontal)
             .padding(.bottom, edge!.bottom == 0 ? 20 : 0)
         }
         .ignoresSafeArea(.keyboard, edges: .bottom)
-        .background(Color.black.opacity(0.05).ignoresSafeArea(.all, edges: .all))
+        .background(Color.secondary.opacity(0.05).ignoresSafeArea(.all, edges: .all))
     }
 }
 
@@ -76,7 +81,7 @@ struct TabButton: View {
     var body: some View {
         Button(action: {selectedTab = image}) {
             Image(systemName: "\(image)")
-                .foregroundColor(selectedTab == image ? Color.gray : Color.black)
+                .foregroundColor(selectedTab == image ? Color.primary : Color.secondary)
                 .padding()
         }
     }

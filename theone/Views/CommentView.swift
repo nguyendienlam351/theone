@@ -13,25 +13,28 @@ struct CommentView: View {
     var postId: String?
     
     var body: some View {
-        VStack {
-            ScrollView {
-                if !commentService.comments.isEmpty {
-                    ForEach(commentService.comments) {
-                        (comment) in
-                        CommentCard(comment: comment)
+        ZStack {
+            Color.black.edgesIgnoringSafeArea(.all)
+            VStack {
+                ScrollView {
+                    if !commentService.comments.isEmpty {
+                        ForEach(commentService.comments) {
+                            (comment) in
+                            CommentCard(comment: comment)
+                        }
                     }
                 }
+                CommentInput(post: post, postId: postId!)
+            }.padding(.top)
+            .navigationTitle("Comments")
+            .onAppear {
+                self.commentService.postId = self.post == nil ? self.postId : self.post?.postId
+                self.commentService.loadComments()
             }
-            CommentInput(post: post, postId: postId!)
-        }
-        .navigationTitle("Comments")
-        .onAppear {
-            self.commentService.postId = self.post == nil ? self.postId : self.post?.postId
-            self.commentService.loadComments()
-        }
-        .onDisappear {
-            if self.commentService.listener != nil {
-                self.commentService.listener.remove()
+            .onDisappear {
+                if self.commentService.listener != nil {
+                    self.commentService.listener.remove()
+                }
             }
         }
     }

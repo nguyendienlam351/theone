@@ -22,6 +22,7 @@ struct EditProfile: View {
     @State private var showingAlert = false
     @State private var alertTitle: String = "Oh no 😭"
     @State private var bio: String = ""
+    @State var isLinkActive = false
     
     init(session: User?) {
         _bio = State(initialValue: session?.bio ?? "")
@@ -77,67 +78,76 @@ struct EditProfile: View {
         
     }
     
+    
     var body: some View {
-        ScrollView {
-            VStack(spacing: 20) {
-                Text("Edit profile").font(.largeTitle)
-                
-                VStack {
-                    Group {
-                        if profileImage != nil {
-                            profileImage!.resizable()
-                                .clipShape(Circle())
-                                .frame(width: 150, height: 150)
-                                .padding(.top, 20)
-                                .onTapGesture {
-                                    self.showingActionSheet = true
-                                }
-                        }
-                        else {
-                            WebImage(url: URL(string: session.session!.profileImageUrl)!)
-                                .resizable()
-                                .clipShape(Circle())
-                                .frame(width: 150, height: 150)
-                                .padding(.top, 20)
-                                .onTapGesture {
-                                    self.showingActionSheet = true
-                                }
+        ZStack {
+            Color.black.edgesIgnoringSafeArea(.all)
+            ScrollView {
+                VStack(spacing: 20) {
+                    Text("Edit profile").font(.largeTitle).foregroundColor(.primary)
+                    
+                    VStack {
+                        Group {
+                            if profileImage != nil {
+                                profileImage!.resizable()
+                                    .clipShape(Circle())
+                                    .frame(width: 150, height: 150)
+                                    .padding(.top, 20)
+                                    .onTapGesture {
+                                        self.showingActionSheet = true
+                                    }
+                            }
+                            else {
+                                WebImage(url: URL(string: session.session!.profileImageUrl)!)
+                                    .resizable()
+                                    .clipShape(Circle())
+                                    .frame(width: 150, height: 150)
+                                    .padding(.top, 20)
+                                    .onTapGesture {
+                                        self.showingActionSheet = true
+                                    }
+                            }
                         }
                     }
-                }
-                
-                FormField(value: $username, icon: "person.fill", placeholder: "Username")
-                
-                FormField(value: $bio, icon: "book.fill", placeholder: "Bio")
-                
-                Button(action: editProfile) {
-                    Text("Edit").font(/*@START_MENU_TOKEN@*/.title/*@END_MENU_TOKEN@*/).modifier(ButtonModifiers())
-                }.alert(isPresented: $showingAlert) {
-                    Alert(title: Text(alertTitle),
-                          message: Text(error),
-                          dismissButton: .default(Text("OK")))
-                }
-                
-                Text("Changes will be effected the next time you log in.")
+                    
+                    FormField(value: $username, icon: "person.fill", placeholder: "Username")
+                    
+                    FormField(value: $bio, icon: "book.fill", placeholder: "Bio")
+                    
+                    Button(action: editProfile) {
+                        Text("Save").font(/*@START_MENU_TOKEN@*/.title/*@END_MENU_TOKEN@*/).bold().modifier(ButtonModifiers())
+                    }.alert(isPresented: $showingAlert) {
+                        Alert(title: Text(alertTitle),
+                              message: Text(error),
+                              dismissButton: .default(Text("OK")))
+                    }
+                    NavigationLink(
+                        destination: ChangePasswordView(), isActive: $isLinkActive) {
+                        Button(action: {self.isLinkActive = true}) {
+                        Text("Change Password").font(/*@START_MENU_TOKEN@*/.title/*@END_MENU_TOKEN@*/).bold().modifier(ButtonModifiers())
+                    }
+                    }
+                    Text("Changes will be effected the next time you log in.").foregroundColor(.secondary)
+                }.padding(.horizontal)
+            }.navigationTitle(session.session!.username)
+            .sheet(isPresented: $showingImagePicker, onDismiss: loadImage){
+                ImagePicker(pickerImage: self.$pickedImage,
+                            showImagePicker: self.$showingImagePicker,
+                            imageData: self.$imageData)
+            }.actionSheet(isPresented: $showingActionSheet) {
+                ActionSheet(title: Text(""),
+                            buttons: [
+                                .default(Text("Choose A Photo")){
+                                    self.sourceType = .photoLibrary
+                                    self.showingImagePicker = true
+                                },
+                                .default(Text("Take A Photo")) {
+                                    self.sourceType = .camera
+                                    self.showingImagePicker = true
+                                },
+                                .cancel()
+                            ])
             }
-        }.navigationTitle(session.session!.username)
-        .sheet(isPresented: $showingImagePicker, onDismiss: loadImage){
-            ImagePicker(pickerImage: self.$pickedImage,
-                        showImagePicker: self.$showingImagePicker,
-                        imageData: self.$imageData)
-        }.actionSheet(isPresented: $showingActionSheet) {
-            ActionSheet(title: Text(""),
-                        buttons: [
-                            .default(Text("Choose A Photo")){
-                                self.sourceType = .photoLibrary
-                                self.showingImagePicker = true
-                            },
-                            .default(Text("Take A Photo")) {
-                                self.sourceType = .camera
-                                self.showingImagePicker = true
-                            },
-                            .cancel()
-                        ])
         }
     }
 }

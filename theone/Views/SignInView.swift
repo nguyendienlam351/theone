@@ -12,7 +12,7 @@ struct SignInView: View {
     @State private var password: String = ""
     @State private var error: String = ""
     @State private var showingAlert = false
-    @State private var alertTitle: String = "Oh no 😭"
+    @State private var alertTitle: String = "Message"
     
     func errorCheck() -> String? {
         if email.trimmingCharacters(in: .whitespaces).isEmpty ||
@@ -46,40 +46,46 @@ struct SignInView: View {
         }
     }
     
+    
     var body: some View {
         NavigationView {
-            VStack(spacing: 20) {
-                Image("logo").resizable()
-                    .scaledToFit()
-                    .frame(width: 150, height: 150, alignment: .trailing)
-                
-                VStack(alignment: .center) {
-                    Text("Welcome Back").font(.system(size: 32, weight: .heavy))
-                    Text("SignIn To Continue").font(.system(size: 16, weight: .medium))
+            ZStack {
+                Color.black.edgesIgnoringSafeArea(.all)
+                VStack(spacing: 20) {
+                    Image("logo").resizable()
+                        .scaledToFit()
+                        .frame(width: 150, height: 150, alignment: .trailing)
                     
-                }
-                
-                FormField(value: $email, icon: "envelope.fill", placeholder: "Email")
-                
-                FormField(value: $password, icon: "lock.fill", placeholder: "Password",isSecure: true)
-                
-                Button(action: signIn) {
-                    Text("Sign In").font(.title).modifier(ButtonModifiers())
-                }.alert(isPresented: $showingAlert) {
-                    Alert(title: Text(alertTitle),
-                          message: Text(error),
-                          dismissButton: .default(Text("OK")))
-                }
-                
-                HStack {
-                    Text("New?")
-                    NavigationLink(
-                        destination: SignUpView()) {
-                        Text("Create an Account.").font(.system(size: 20, weight: .semibold))
-                            .foregroundColor(.black)
+                    VStack(alignment: .center) {
+                        Text("Welcome Back").font(.system(size: 32, weight: .heavy)).foregroundColor(Color.primary)
+                        Text("SignIn To Continue").font(.system(size: 16, weight: .medium)).foregroundColor(Color.secondary)
+                        
                     }
-                }
-            }.padding()
+                    
+                    FormField(value: $email, icon: "envelope.fill", placeholder: "Email")
+                    FormField(value: $password, icon: "lock.fill", placeholder: "Password",isSecure: true).accentColor(Color.primary)
+                    
+                    Button(action: signIn) {
+                        Text("Sign In").font(.title).bold().modifier(ButtonModifiers())
+                    }.alert(isPresented: $showingAlert) {
+                        Alert(title: Text(alertTitle),
+                              message: Text(error),
+                              dismissButton: .default(Text("OK")))
+                    }
+                    
+                    HStack {
+                        Text("New?").foregroundColor(Color.secondary)
+                        NavigationLink(
+                            destination: SignUpView()) {
+                            Text("Create an Account.").font(.system(size: 20, weight: .semibold))
+                                .foregroundColor(Color.primary)
+                        }
+                    }
+                }.padding()
+            }
+            .navigationTitle("")
+            .navigationBarTitleDisplayMode(.inline)
+            .navigationBarHidden(true)
         }
     }
 }

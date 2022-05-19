@@ -7,6 +7,19 @@
 
 import SwiftUI
 
+extension View {
+    func placeholder<Content: View>(
+        when shouldShow: Bool,
+        alignment: Alignment = .leading,
+        @ViewBuilder placeholder: () -> Content) -> some View {
+
+        ZStack(alignment: alignment) {
+            placeholder().opacity(shouldShow ? 1 : 0)
+            self
+        }
+    }
+}
+
 extension Encodable {
     func asDictionary() throws -> [String: Any] {
         let data = try JSONEncoder().encode(self)
@@ -77,4 +90,55 @@ extension UIColor {
         }
         self.init(red: CGFloat(r) / 255, green: CGFloat(g) / 255, blue: CGFloat(b) / 255, alpha: CGFloat(a) / 255)
     }
+    
+    static let primary = UIColor(hexString: "E85626")
+    static let secondary = UIColor(hexString: "AF2D23")
+    static let thirdly = UIColor(hexString: "606060")
+}
+
+extension Color {
+    static let primary = Color(UIColor(hexString: "E85626"))
+    static let secondary = Color(UIColor(hexString: "AF2D23"))
+    static let thirdly = Color(UIColor(hexString: "606060"))
+}
+
+struct NavigationBarModifier: ViewModifier {
+
+    var backgroundColor: UIColor?
+    var titleColor: UIColor?
+
+    init(backgroundColor: UIColor?, titleColor: UIColor?) {
+        self.backgroundColor = backgroundColor
+        let coloredAppearance = UINavigationBarAppearance()
+        coloredAppearance.configureWithTransparentBackground()
+        coloredAppearance.backgroundColor = backgroundColor
+        coloredAppearance.titleTextAttributes = [.foregroundColor: titleColor ?? .white]
+        coloredAppearance.largeTitleTextAttributes = [.foregroundColor: titleColor ?? .white]
+
+        UINavigationBar.appearance().standardAppearance = coloredAppearance
+        UINavigationBar.appearance().compactAppearance = coloredAppearance
+        UINavigationBar.appearance().scrollEdgeAppearance = coloredAppearance
+    }
+
+    func body(content: Content) -> some View {
+        ZStack{
+            content
+            VStack {
+                GeometryReader { geometry in
+                    Color(self.backgroundColor ?? .clear)
+                        .frame(height: geometry.safeAreaInsets.top)
+                        .edgesIgnoringSafeArea(.top)
+                    Spacer()
+                }
+            }
+        }
+    }
+}
+
+extension View {
+
+    func navigationBarColor(backgroundColor: UIColor?, titleColor: UIColor?) -> some View {
+        self.modifier(NavigationBarModifier(backgroundColor: backgroundColor, titleColor: titleColor))
+    }
+
 }

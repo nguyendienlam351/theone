@@ -23,10 +23,10 @@ struct ProfileHeader: View {
                         .scaledToFill()
                         .clipShape(/*@START_MENU_TOKEN@*/Circle()/*@END_MENU_TOKEN@*/)
                         .frame(width: 80, height: 80, alignment: .center)
-                        .shadow(color: .black, radius: 3)
+                        .shadow(color: .secondary, radius: 3)
                         .padding(.leading)
                     
-                    Text(user!.username).font(.headline).bold().padding(.leading)
+                    Text(user!.username).font(.headline).bold().padding(.leading).foregroundColor(.primary)
                 } else {
                     Color.init(red: 0.9, green: 0.9, blue: 0.9)
                         .frame(width: 80, height: 80, alignment: .center)
@@ -37,20 +37,20 @@ struct ProfileHeader: View {
                 HStack {
                     Spacer()
                     VStack {
-                        Text("Posts").font(.footnote)
-                        Text("\(postsCount)").font(.title).bold()
+                        Text("Posts").font(.footnote).foregroundColor(.primary)
+                        Text("\(postsCount)").font(.title).bold().foregroundColor(.primary)
                     }.padding(.top, 60)
                     
                     Spacer()
                     VStack {
-                        Text("Followers").font(.footnote)
-                        Text("\(followers)").font(.title).bold()
+                        Text("Followers").font(.footnote).foregroundColor(.primary)
+                        Text("\(followers)").font(.title).bold().foregroundColor(.primary)
                     }.padding(.top, 60)
                     
                     Spacer()
                     VStack {
-                        Text("Following").font(.footnote)
-                        Text("\(following)").font(.title).bold()
+                        Text("Following").font(.footnote).foregroundColor(.primary)
+                        Text("\(following)").font(.title).bold().foregroundColor(.primary)
                     }.padding(.top, 60)
                     Spacer()
                 }

@@ -14,9 +14,9 @@ struct ButtonModifiers: ViewModifier {
             .frame(minWidth: /*@START_MENU_TOKEN@*/0/*@END_MENU_TOKEN@*/, maxWidth: /*@START_MENU_TOKEN@*/.infinity/*@END_MENU_TOKEN@*/)
             .frame(height: 20)
             .padding()
-            .foregroundColor(.white)
+            .foregroundColor(.black)
             .font(.system(size: 14, weight: .bold))
-            .background(Color.black)
+            .background(Color.primary)
             .cornerRadius(5)
     }
 }

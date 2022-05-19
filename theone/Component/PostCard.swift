@@ -43,7 +43,7 @@ struct PostCard: View {
                         .resizable()
                         .scaledToFit()
                         .frame(width: 25, height: 25, alignment: /*@START_MENU_TOKEN@*/.center/*@END_MENU_TOKEN@*/)
-                        .foregroundColor((self.postCardService.isLiked) ? .red : .black)
+                        .foregroundColor((self.postCardService.isLiked) ? .red : .primary)
                 }.scaleEffect(animation ? animationScale : 1)
                 .animation(.easeIn(duration: duration))
                 
@@ -54,15 +54,15 @@ struct PostCard: View {
                         .scaledToFit()
                         .aspectRatio(contentMode: .fit)
                         .frame(width: 25, height: 25, alignment: /*@START_MENU_TOKEN@*/.center/*@END_MENU_TOKEN@*/)
+                        .foregroundColor(.primary)
                 }
                 Spacer()
             }.padding(.leading, 16)
             
             if(self.postCardService.post.likeCount > 0) {
                 Text("\(self.postCardService.post.likeCount) likes").padding(.horizontal)
+                    .foregroundColor(.primary)
             }
-            
-            Text("View Comment").font(.caption).padding(.leading)
         }
     }
 }

@@ -59,57 +59,71 @@ struct Post: View {
     }
     
     var body: some View {
-        ScrollView {
-            Text("Upload A Post").font(.largeTitle)
-            
-            VStack {
-                if postImage != nil {
-                    postImage!.resizable()
-                        .frame(height: 200)
-                        .onTapGesture {
-                            self.showingActionSheet = true
-                        }
+        
+        ZStack {
+            Color.black.edgesIgnoringSafeArea(.all)
+            ScrollView {
+                Text("Upload A Post").font(.largeTitle).foregroundColor(.primary)
+                
+                VStack {
+                    if postImage != nil {
+                        postImage!.resizable()
+                            .frame(height: 200)
+                            .onTapGesture {
+                                self.showingActionSheet = true
+                            }
+                    }
+                    else {
+                        Image(systemName: "photo.fill").resizable()
+                            .frame(height: 200)
+                            .foregroundColor(.primary)
+                            .onTapGesture {
+                                self.showingActionSheet = true
+                            }
+                    }
                 }
-                else {
-                    Image(systemName: "photo.fill").resizable()
-                        .frame(height: 200)
-                        .onTapGesture {
-                            self.showingActionSheet = true
-                        }
+                
+                ZStack {
+                    Color.thirdly
+                TextEditor(text: $text)
+                    .padding(4)
+                    .foregroundColor(.primary)
+                    .textFieldStyle(PlainTextFieldStyle())
+                    .background(Color.clear)
                 }
-            }
-            
-            TextEditor(text: $text)
                 .frame(height: 200)
-                .padding(4)
-                .background(RoundedRectangle(cornerRadius: 8).stroke(Color.black))
-            
-            Button(action: uploadPost) {
-                Text("Upload Post").font(.title).bold().modifier(ButtonModifiers())
-            }.alert(isPresented: $showingAlert) {
-                Alert(title: Text(alertTitle),
-                      message: Text(error),
-                      dismissButton: .default(Text("OK")))
+                .background(
+                        RoundedRectangle(cornerRadius: 5)
+                            .stroke(Color.secondary, lineWidth: 2)
+                    )
+                
+                Button(action: uploadPost) {
+                    Text("Upload Post").font(.title).bold().modifier(ButtonModifiers())
+                }.alert(isPresented: $showingAlert) {
+                    Alert(title: Text(alertTitle),
+                          message: Text(error),
+                          dismissButton: .default(Text("OK")))
+                }
+            }.padding(.horizontal).padding(.top)
+            .sheet(isPresented: $showingImagePicker, onDismiss: loadImage){
+                ImagePicker(pickerImage: self.$pickedImage,
+                            showImagePicker: self.$showingImagePicker,
+                            imageData: self.$imageData)
+            }.actionSheet(isPresented: $showingActionSheet) {
+                ActionSheet(title: Text(""),
+                            buttons: [
+                                .default(Text("Choose A Photo")){
+                                    self.sourceType = .photoLibrary
+                                    self.showingImagePicker = true
+                                },
+                                .default(Text("Take A Photo")) {
+                                    self.sourceType = .camera
+                                    self.showingImagePicker = true
+                                },
+                                .cancel()
+                            ])
             }
-        }.padding(.horizontal).padding(.top)
-        .sheet(isPresented: $showingImagePicker, onDismiss: loadImage){
-            ImagePicker(pickerImage: self.$pickedImage,
-                        showImagePicker: self.$showingImagePicker,
-                        imageData: self.$imageData)
-        }.actionSheet(isPresented: $showingActionSheet) {
-            ActionSheet(title: Text(""),
-                        buttons: [
-                            .default(Text("Choose A Photo")){
-                                self.sourceType = .photoLibrary
-                                self.showingImagePicker = true
-                            },
-                            .default(Text("Take A Photo")) {
-                                self.sourceType = .camera
-                                self.showingImagePicker = true
-                            },
-                            .cancel()
-                        ])
-        }
+        }.navigationBarHidden(true)
     }
 }
 

@@ -20,19 +20,19 @@ struct PostCardImage: View {
                     .scaledToFill()
                     .clipShape(/*@START_MENU_TOKEN@*/Circle()/*@END_MENU_TOKEN@*/)
                     .frame(width: 50, height: 50, alignment: .center)
-                    .shadow(color: .gray, radius: 3).padding(.leading)
+                    .shadow(color: .secondary, radius: 3).padding(.leading)
                 
                 VStack(alignment: .leading, spacing: 4) {
-                    Text(post.username).font(.headline)
+                    Text(post.username).font(.headline).foregroundColor(.primary)
                     Text(Date(timeIntervalSince1970: post.date).timeAgo() + " ago").font(.subheadline)
-                        .foregroundColor(.gray)
+                        .foregroundColor(.secondary)
                 }
                 
             }.padding(.top, 16)
             
             Text(post.caption).lineLimit(nil)
                 .padding(.leading, 16)
-                .padding(.trailing, 32)
+                .padding(.trailing, 32).foregroundColor(.primary)
             
             WebImage(url: URL(string: post.mediaUrl)!)
                 .resizable()

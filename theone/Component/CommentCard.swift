@@ -17,20 +17,20 @@ struct CommentCard: View {
                 .resizable()
                 .scaledToFill()
                 .clipShape(/*@START_MENU_TOKEN@*/Circle()/*@END_MENU_TOKEN@*/)
-                .frame(width: 30, height: 30, alignment: .center)
+                .frame(width: 45, height: 45, alignment: .center)
                 .shadow(color: .black, radius: 3)
                 .padding(.leading)
             
             VStack(alignment: .leading) {
-                Text(comment.username).font(.subheadline).bold()
-                Text(comment.comment).font(.caption)
+                Text(comment.username).font(.headline).bold().foregroundColor(.primary)
+                Text(comment.comment).font(.subheadline).foregroundColor(.secondary)
             }
             
             Spacer()
             
-            Text((Date(timeIntervalSince1970: comment.date)).timeAgo() + " ago").font(.subheadline)
+            Text((Date(timeIntervalSince1970: comment.date)).timeAgo() + " ago").font(.caption)
             
-        }
+        }.padding(.vertical, 10)
     }
 }
 

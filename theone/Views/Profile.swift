@@ -18,64 +18,63 @@ struct Profile: View {
     let threeItem = [GridItem(), GridItem(), GridItem()]
     
     var body: some View {
-        ScrollView {
-            VStack{
-                ProfileHeader(user: self.session.session,
-                              postsCount: profileService.posts.count,
-                              following: $profileService.following,
-                              followers: $profileService.followers)
-                
-                VStack(alignment: .leading) {
-                    Text(session.session?.bio ?? "").font(.headline).lineLimit(1)
-                }
-                NavigationLink(destination: EditProfile(session: self.session.session), isActive: $isLinkActive) {
-                    Button(action: {self.isLinkActive = true}) {
-                        Text("Edit Profile").font(.title).bold().modifier(ButtonModifiers())
-                            .padding(.horizontal)
+        ZStack {
+            Color.black.edgesIgnoringSafeArea(.all)
+            ScrollView {
+                VStack{
+                    ProfileHeader(user: self.session.session,
+                                  postsCount: profileService.posts.count,
+                                  following: $profileService.following,
+                                  followers: $profileService.followers)
+                    
+                    VStack(alignment: .leading) {
+                        Text(session.session?.bio ?? "").font(.headline).lineLimit(1)
                     }
-                }
-                
-                Picker("", selection: $selecttion) {
-                    Image(systemName: "circle.grid.2x2.fill").tag(0)
-                    Image(systemName: "person.fill").tag(1)
-                }.pickerStyle(SegmentedPickerStyle()).padding(.horizontal)
-                
-                if selecttion == 0 {
-                    LazyVGrid(columns: threeItem) {
-                        ForEach(self.profileService.posts, id:\.postId) {
-                            (post) in
-                            WebImage(url: URL(string: post.mediaUrl)!)
-                                .resizable()
-                                .aspectRatio(contentMode: /*@START_MENU_TOKEN@*/.fill/*@END_MENU_TOKEN@*/)
-                                .frame(width: UIScreen.main.bounds.width/3,
-                                       height: UIScreen.main.bounds.height/4).clipped()
+                    NavigationLink(destination: EditProfile(session: self.session.session), isActive: $isLinkActive) {
+                        Button(action: {self.isLinkActive = true}) {
+                            Text("Edit Profile").font(.title).bold().modifier(ButtonModifiers())
+                                .padding(.horizontal)
                         }
                     }
-                }
-                else if self.session.session != nil {
-                    ScrollView {
-                        VStack {
+                    
+                    Picker("", selection: $selecttion) {
+                        Image(systemName: "circle.grid.2x2.fill").tag(0).accentColor(.primary)
+                        Image(systemName: "person.fill").tag(1).foregroundColor(.primary)
+                    }.pickerStyle(SegmentedPickerStyle()).padding(.horizontal)
+                    
+                    if selecttion == 0 {
+                        LazyVGrid(columns: threeItem) {
                             ForEach(self.profileService.posts, id:\.postId) {
                                 (post) in
-                                PostCardImage(post: post)
-                                PostCard(post: post)
+                                WebImage(url: URL(string: post.mediaUrl)!)
+                                    .resizable()
+                                    .aspectRatio(contentMode: /*@START_MENU_TOKEN@*/.fill/*@END_MENU_TOKEN@*/)
+                                    .frame(width: UIScreen.main.bounds.width/3,
+                                           height: UIScreen.main.bounds.height/4).clipped()
+                            }
+                        }
+                    }
+                    else if self.session.session != nil {
+                        ScrollView {
+                            VStack {
+                                ForEach(self.profileService.posts, id:\.postId) {
+                                    (post) in
+                                    PostCardImage(post: post)
+                                    PostCard(post: post)
+                                }
                             }
                         }
                     }
                 }
+            }.navigationTitle("Profile")
+            .navigationBarTitleDisplayMode(.inline)
+            .navigationBarItems(trailing: Button(action: {
+                self.session.logout()
+            }) {
+                Image(systemName: "arrow.right.circle.fill")
+            }).onAppear{
+                self.profileService.loadUserPost(userId: Auth.auth().currentUser!.uid)
             }
-        }.navigationTitle("Profile")
-        .navigationBarTitleDisplayMode(.inline)
-        .navigationBarItems(leading: Button(action: {}) {
-            NavigationLink(destination: UserProfile()){
-                Image(systemName: "person.fill")
-            }
-        }, trailing: Button(action: {
-            self.session.logout()
-        }) {
-            Image(systemName: "arrow.right.circle.fill")
-        }).onAppear{
-            self.profileService.loadUserPost(userId: Auth.auth().currentUser!.uid)
         }
     }
 }

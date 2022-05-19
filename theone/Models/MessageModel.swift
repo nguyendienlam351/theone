@@ -2,7 +2,17 @@
 //  MessageModel.swift
 //  theone
 //
-//  Created by nguyenlam on 5/16/22.
+//  Created by lequy on 5/16/22.
 //
 
 import Foundation
+
+struct MessageModel: Encodable, Decodable, Identifiable {
+    var id = UUID()
+    var lastMessage: String
+    var username: String
+    var isPhoto: Bool
+    var timestamp: Double
+    var userId: String
+    var profile: String
+}

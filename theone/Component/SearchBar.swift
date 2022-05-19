@@ -13,10 +13,13 @@ struct SearchBar: View {
     
     var body: some View {
         HStack {
-            TextField("Search User here", text: $value)
-                .padding(.leading, 24)
+            TextField("", text: $value)
+                .placeholder(when: value.isEmpty) {
+                    Text("Search User here").foregroundColor(Color.thirdly)
+                }.padding(.leading, 24)
         }.padding()
-        .background(Color(.systemGray5))
+        .foregroundColor(Color.primary)
+        .background(Color(.thirdly))
         .cornerRadius(6.0)
         .padding(.horizontal)
         .onTapGesture(perform: {
@@ -25,15 +28,16 @@ struct SearchBar: View {
         .overlay(
             HStack {
                 Image(systemName: "magnifyingglass")
+                    .foregroundColor(Color.secondary)
                 
                 Spacer()
                 
                 Button(action: {value = ""}) {
                     Image(systemName: "xmark.circle.fill")
+                        .foregroundColor(Color.secondary)
                 }
             }
             .padding(.horizontal, 32)
-            .foregroundColor(.gray)
         )
     }
 }
