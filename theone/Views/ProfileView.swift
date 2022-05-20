@@ -9,7 +9,7 @@ import SwiftUI
 import FirebaseAuth
 import SDWebImageSwiftUI
 
-struct Profile: View {
+struct ProfileView: View {
     @EnvironmentObject var session: SessionStore
     @State private var selecttion = 1
     @StateObject var profileService = ProfileService()
@@ -30,7 +30,7 @@ struct Profile: View {
                     VStack(alignment: .leading) {
                         Text(session.session?.bio ?? "").font(.headline).lineLimit(1)
                     }
-                    NavigationLink(destination: EditProfile(session: self.session.session), isActive: $isLinkActive) {
+                    NavigationLink(destination: EditProfileView(session: self.session.session), isActive: $isLinkActive) {
                         Button(action: {self.isLinkActive = true}) {
                             Text("Edit Profile").font(.title).bold().modifier(ButtonModifiers())
                                 .padding(.horizontal)
@@ -73,7 +73,9 @@ struct Profile: View {
             }) {
                 Image(systemName: "arrow.right.circle.fill")
             }).onAppear{
-                self.profileService.loadUserPost(userId: Auth.auth().currentUser!.uid)
+                if let userId = Auth.auth().currentUser?.uid {
+                    self.profileService.loadUserPost(userId: userId)
+                }
             }
         }
     }
@@ -81,6 +83,6 @@ struct Profile: View {
 
 struct Profile_Previews: PreviewProvider {
     static var previews: some View {
-        Profile()
+        ProfileView()
     }
 }

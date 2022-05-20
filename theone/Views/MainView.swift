@@ -8,7 +8,7 @@
 import SwiftUI
 import FirebaseAuth
 
-struct Main: View {
+struct MainView: View {
     @EnvironmentObject var session: SessionStore
     @StateObject var profileService = ProfileService()
     
@@ -36,6 +36,6 @@ struct Main: View {
 
 struct Main_Previews: PreviewProvider {
     static var previews: some View {
-        Main()
+        MainView()
     }
 }

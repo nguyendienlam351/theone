@@ -58,7 +58,7 @@ struct SignUpView: View {
         
         AuthService.signUp(username: username, email: email, password: password, imageData: imageData, onSuccess: {
             (user) in
-            self.clear()
+            self.presentationMode.wrappedValue.dismiss()
         }) {
             (errorMessage) in
             print("Error \(errorMessage)")

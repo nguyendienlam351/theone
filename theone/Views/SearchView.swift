@@ -8,7 +8,7 @@
 import SwiftUI
 import SDWebImageSwiftUI
 
-struct UserProfile: View {
+struct SearchView: View {
     @State private var value: String = ""
     @State var users: [User] = []
     @State var isLoading = false
@@ -28,7 +28,7 @@ struct UserProfile: View {
             Color.black.edgesIgnoringSafeArea(.all)
             ScrollView {
                 VStack(alignment: .leading) {
-                    SearchBar(value: $value).padding(.vertical)
+                    SearchBar(users: $users, value: $value).padding(.vertical)
                         .onChange(of: value, perform: {
                             new in
                             searchUser()
@@ -60,6 +60,6 @@ struct UserProfile: View {
 
 struct UserProfile_Previews: PreviewProvider {
     static var previews: some View {
-        UserProfile()
+        SearchView()
     }
 }

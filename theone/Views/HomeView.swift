@@ -37,13 +37,13 @@ struct CustomTabView: View {
     var body: some View {
         ZStack(alignment: Alignment(horizontal: .center, vertical: .bottom)) {
             TabView(selection: $selectedTab) {
-                Main()
+                MainView()
                     .tag("house.fill")
-                UserProfile()
+                SearchView()
                     .tag("magnifyingglass")
-                Post()
+                PostView()
                     .tag("camera.viewfinder")
-                Profile()
+                ProfileView()
                     .tag("person.fill")
             }
             .tabViewStyle(PageTabViewStyle(indexDisplayMode: .never))

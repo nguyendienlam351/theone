@@ -8,8 +8,14 @@
 import SwiftUI
 
 struct SearchBar: View {
+    @Binding var users: [User]
     @Binding var value: String
     @State var isSearching = false
+    
+    func clear() {
+        value = ""
+        users.removeAll()
+    }
     
     var body: some View {
         HStack {
@@ -32,7 +38,7 @@ struct SearchBar: View {
                 
                 Spacer()
                 
-                Button(action: {value = ""}) {
+                Button(action: clear) {
                     Image(systemName: "xmark.circle.fill")
                         .foregroundColor(Color.secondary)
                 }

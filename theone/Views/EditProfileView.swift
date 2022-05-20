@@ -9,7 +9,7 @@ import SwiftUI
 import Firebase
 import SDWebImageSwiftUI
 
-struct EditProfile: View {
+struct EditProfileView: View {
     @EnvironmentObject var session: SessionStore
     @State private var username: String = ""
     @State private var profileImage: Image?
@@ -20,7 +20,7 @@ struct EditProfile: View {
     @State private var sourceType: UIImagePickerController.SourceType = .photoLibrary
     @State private var error: String = ""
     @State private var showingAlert = false
-    @State private var alertTitle: String = "Oh no 😭"
+    @State private var alertTitle: String = "Message"
     @State private var bio: String = ""
     @State var isLinkActive = false
     
@@ -74,8 +74,9 @@ struct EditProfile: View {
             self.showingAlert = true
             return
         })
-        
-        
+        self.error = "Successful"
+        self.showingAlert = true
+        return
     }
     
     
@@ -128,7 +129,7 @@ struct EditProfile: View {
                     }
                     }
                     Text("Changes will be effected the next time you log in.").foregroundColor(.secondary)
-                }.padding(.horizontal)
+                }.padding(.horizontal).padding(.vertical)
             }.navigationTitle(session.session!.username)
             .sheet(isPresented: $showingImagePicker, onDismiss: loadImage){
                 ImagePicker(pickerImage: self.$pickedImage,

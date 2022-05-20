@@ -59,7 +59,7 @@ class PostService {
     
     static func loadUserPost(userId: String, onSuccess: @escaping(_ posts: [PostModel]) ->Void) {
         
-        PostService.PostsUserId(userId: userId).collection("posts").getDocuments {
+        PostService.PostsUserId(userId: userId).collection("posts").order(by: "date", descending: true).getDocuments {
             (snapshot, error) in
             
             guard let snap = snapshot else {

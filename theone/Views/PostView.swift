@@ -7,7 +7,7 @@
 
 import SwiftUI
 
-struct Post: View {
+struct PostView: View {
     @State private var postImage: Image?
     @State private var pickedImage: Image?
     @State private var showingActionSheet = false
@@ -16,7 +16,7 @@ struct Post: View {
     @State private var sourceType: UIImagePickerController.SourceType = .photoLibrary
     @State private var error: String = ""
     @State private var showingAlert = false
-    @State private var alertTitle: String = "Oh no 😭"
+    @State private var alertTitle: String = "Message"
     @State private var text = ""
     
     func loadImage() {
@@ -37,7 +37,7 @@ struct Post: View {
     func clear() {
         self.text = ""
         self.imageData = Data()
-        self.postImage = Image(systemName: "photo.fill")
+        self.postImage = nil
     }
     
     func uploadPost() {
@@ -48,7 +48,10 @@ struct Post: View {
         }
         // Firebase
         PostService.uploadPost(caption: text, imageData: imageData, onSuccess: {
-            self.clear()
+            self.error = "Successful"
+            self.showingAlert = true
+            clear()
+            return
         }) {
             (errorMessage) in
             print("Error \(errorMessage)")
@@ -129,6 +132,6 @@ struct Post: View {
 
 struct Post_Previews: PreviewProvider {
     static var previews: some View {
-        Post()
+        PostView()
     }
 }

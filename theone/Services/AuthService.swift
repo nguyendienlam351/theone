@@ -65,4 +65,26 @@ class AuthService {
         }
     }
     
+    static func changePassword(password: String, newPassword: String, onSuccess: @escaping() -> Void, onError: @escaping(_ errorMessage: String) -> Void) {
+        if let email = Auth.auth().currentUser!.email {
+            Auth.auth().signIn(withEmail: email, password: password) {
+                (authData, error) in
+                if error != nil {
+                    onError(error!.localizedDescription)
+                    return
+                }
+                
+                Auth.auth().currentUser?.updatePassword(to: newPassword) {
+                    error in
+                    if error != nil {
+                        onError(error!.localizedDescription)
+                        return
+                    }
+                    
+                    onSuccess()
+                }
+            }
+        }
+    }
+    
 }
