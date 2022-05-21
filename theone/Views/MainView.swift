@@ -11,13 +11,14 @@ import FirebaseAuth
 struct MainView: View {
     @EnvironmentObject var session: SessionStore
     @StateObject var profileService = ProfileService()
+    @State var posts = [PostModel]()
     
     var body: some View {
         ZStack {
             Color.black.edgesIgnoringSafeArea(.all)
             ScrollView {
                 VStack {
-                    ForEach(self.profileService.posts, id:\.postId) {
+                    ForEach(self.posts, id:\.postId) {
                         (post) in
                         PostCardImage(post: post)
                         PostCard(post: post)
@@ -26,7 +27,12 @@ struct MainView: View {
             }.navigationTitle("The One")
             .navigationBarColor(backgroundColor: .thirdly, titleColor: .primary)
             .onAppear{
-                self.profileService.loadUserPost(userId: Auth.auth().currentUser!.uid)
+//                self.profileService.loadUserPost(userId: Auth.auth().currentUser!.uid)
+                PostService.loadAllPost() {
+                    posts in
+                    
+                    self.posts = posts
+                }
             }
         }
     }

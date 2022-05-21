@@ -78,4 +78,28 @@ class FollowService: ObservableObject {
             }
         }
     }
+    
+    static func getUserFollowing(onSuccess: @escaping(_ userIds: [String]) -> Void) {
+        guard let userId = Auth.auth().currentUser?.uid else {
+            return
+        }
+        ProfileService.followingCollection(userId: userId).getDocuments {
+            (snapshot, error) in
+            
+            guard let snap = snapshot else {
+                print("Error")
+                return
+            }
+            
+            
+            var userIds = [String]()
+            
+            userIds.append(userId)
+            for doc in snap.documents {
+                userIds.append(doc.documentID)
+            }
+            
+            onSuccess(userIds)
+        }
+    }
 }

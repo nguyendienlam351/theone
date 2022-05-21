@@ -19,6 +19,9 @@ class PostService {
     static func PostsUserId(userId: String) -> DocumentReference {
         return Post.document(userId)
     }
+    static func PostsAll() -> DocumentReference {
+        return AllPost.document()
+    }
     
     static func timelineUserId(userId: String) -> DocumentReference {
         return Timeline.document(userId)
@@ -79,6 +82,41 @@ class PostService {
                 posts.append(decoder)
             }
             onSuccess(posts)
+        }
+    }
+    
+    static func loadAllPost(onSuccess: @escaping(_ posts: [PostModel]) ->Void) {
+        FollowService.getUserFollowing() {
+            userIds in
+            
+            PostService.AllPost.whereField("ownerId", in: userIds).getDocuments {
+                (snapshot, error) in
+                
+                guard let snap = snapshot else {
+                    print("Error1")
+                    return
+                }
+                
+                var posts = [PostModel]()
+                
+                for doc in snap.documents {
+                    let dict = doc.data()
+                    
+                    guard let decoder = try? PostModel.init(fromDictionary: dict) else {
+                        return
+                    }
+                    
+                    posts.append(decoder)
+                }
+                
+                if !posts.isEmpty {
+                    posts = posts.sorted(by: { (pst0: PostModel, pst1: PostModel) -> Bool in
+                        return pst0.date > pst1.date
+                    })
+                }
+                
+                onSuccess(posts)
+            }
         }
     }
 }
