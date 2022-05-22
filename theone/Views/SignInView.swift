@@ -67,6 +67,16 @@ struct SignInView: View {
                     FormField(value: $email, icon: "envelope.fill", placeholder: "Email")
                     FormField(value: $password, icon: "lock.fill", placeholder: "Password",isSecure: true).accentColor(Color.primary)
                     
+                    
+                    HStack {
+                        Spacer()
+                        NavigationLink(
+                            destination: ForgotPasswordView()) {
+                            Text("Forgot Password?").font(.system(size: 20, weight: .semibold))
+                                .foregroundColor(Color.primary)
+                        }
+                    }
+                    
                     Button(action: signIn) {
                         Text("Sign In").font(.title).bold().modifier(ButtonModifiers())
                     }.alert(isPresented: $showingAlert) {

@@ -14,6 +14,7 @@
 		0557F71E2821726900213886 /* PostView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0557F71D2821726900213886 /* PostView.swift */; };
 		0557F725282174BB00213886 /* ProfileView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0557F724282174BB00213886 /* ProfileView.swift */; };
 		0557F7282821753A00213886 /* MainView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0557F7272821753A00213886 /* MainView.swift */; };
+		055E4435283A99BB00400484 /* ForgotPasswordView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 055E4434283A99BB00400484 /* ForgotPasswordView.swift */; };
 		055F0FD928379F18003B939E /* Launch Screen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 055F0FD828379F18003B939E /* Launch Screen.storyboard */; };
 		055F0FE22837FD2F003B939E /* NavigationBarModifier.swift in Sources */ = {isa = PBXBuildFile; fileRef = 055F0FE12837FD2E003B939E /* NavigationBarModifier.swift */; };
 		055F0FE6283907F4003B939E /* ChatView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 055F0FE5283907F3003B939E /* ChatView.swift */; };
@@ -66,6 +67,7 @@
 		0557F71D2821726900213886 /* PostView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PostView.swift; sourceTree = "<group>"; };
 		0557F724282174BB00213886 /* ProfileView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfileView.swift; sourceTree = "<group>"; };
 		0557F7272821753A00213886 /* MainView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainView.swift; sourceTree = "<group>"; };
+		055E4434283A99BB00400484 /* ForgotPasswordView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ForgotPasswordView.swift; sourceTree = "<group>"; };
 		055F0FD828379F18003B939E /* Launch Screen.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = "Launch Screen.storyboard"; sourceTree = "<group>"; };
 		055F0FE12837FD2E003B939E /* NavigationBarModifier.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NavigationBarModifier.swift; sourceTree = "<group>"; };
 		055F0FE5283907F3003B939E /* ChatView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChatView.swift; sourceTree = "<group>"; };
@@ -244,6 +246,7 @@
 				05CE0CA32830AAE600A52C3E /* EditProfileView.swift */,
 				056F221C283463BA0047BC5F /* ChangePasswordView.swift */,
 				055F0FE5283907F3003B939E /* ChatView.swift */,
+				055E4434283A99BB00400484 /* ForgotPasswordView.swift */,
 			);
 			path = Views;
 			sourceTree = "<group>";
@@ -423,6 +426,7 @@
 				05660405281E455A0058523C /* StorageService.swift in Sources */,
 				055F0FED283A02E3003B939E /* ChatPhotoCard.swift in Sources */,
 				05F1FA0A281B446100836816 /* theoneApp.swift in Sources */,
+				055E4435283A99BB00400484 /* ForgotPasswordView.swift in Sources */,
 				05CE0C9B282FBC8500A52C3E /* CommentCard.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
