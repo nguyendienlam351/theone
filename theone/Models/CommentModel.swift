@@ -8,6 +8,7 @@
 import Foundation
 
 struct CommentModel: Encodable, Decodable, Identifiable {
+    // MARK: Properties
     var id = UUID()
     var profile: String
     var postId: String

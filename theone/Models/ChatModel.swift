@@ -9,6 +9,7 @@ import Foundation
 import Firebase
 
 struct ChatModel: Encodable, Decodable, Hashable {
+    // MARK: Properties
     var messageId: String
     var textMessage: String
     var profile: String

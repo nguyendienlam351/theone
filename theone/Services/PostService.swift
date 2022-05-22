@@ -12,19 +12,16 @@ import FirebaseFirestore
 import FirebaseStorage
 
 class PostService {
+    // MARK: Properties
     static var Post = AuthService.storeRoot.collection("posts")
     static var AllPost = AuthService.storeRoot.collection("allPost")
-    static var Timeline = AuthService.storeRoot.collection("timeline")
     
+    // MARK: Merthod
     static func PostsUserId(userId: String) -> DocumentReference {
         return Post.document(userId)
     }
     static func PostsAll() -> DocumentReference {
         return AllPost.document()
-    }
-    
-    static func timelineUserId(userId: String) -> DocumentReference {
-        return Timeline.document(userId)
     }
     
     static func uploadPost(caption: String, imageData: Data, onSuccess: @escaping() -> Void, onError: @escaping(_ errorMessage: String) -> Void) {

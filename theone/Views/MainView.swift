@@ -9,13 +9,15 @@ import SwiftUI
 import FirebaseAuth
 
 struct MainView: View {
+    // MARK: Properties
     @EnvironmentObject var session: SessionStore
     @StateObject var profileService = ProfileService()
     @State var posts = [PostModel]()
     
+    // MARK: View
     var body: some View {
         ZStack {
-            Color.black.edgesIgnoringSafeArea(.all)
+            Color.backgroundColor.edgesIgnoringSafeArea(.all)
             ScrollView {
                 VStack {
                     ForEach(self.posts, id:\.postId) {

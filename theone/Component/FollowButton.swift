@@ -8,6 +8,7 @@
 import SwiftUI
 
 struct FollowButton: View {
+    // MARK: Properties
     @ObservedObject var followService = FollowService()
     
     var user: User
@@ -15,6 +16,7 @@ struct FollowButton: View {
     @Binding var followersCount: Int
     @Binding var followCheck: Bool
     
+    // MARK: Constructor
     init(user: User,followCheck: Binding<Bool>, followingCount: Binding<Int>, followersCount: Binding<Int>) {
         self.user = user
         self._followCheck = followCheck
@@ -22,6 +24,7 @@ struct FollowButton: View {
         self._followersCount = followersCount
     }
     
+    // MARK: Merthod
     func follow() {
         if !self.followCheck {
             followService.follow(userId: user.uid, followingCount: {
@@ -47,6 +50,7 @@ struct FollowButton: View {
         }
     }
     
+    // MARK: View
     var body: some View {
         Button(action: follow) {
             Text((self.followCheck) ? "Unfollow" : "Follow").font(.title).bold().modifier(ButtonModifiers())

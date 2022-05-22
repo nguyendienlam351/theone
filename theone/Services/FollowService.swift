@@ -9,6 +9,7 @@ import Foundation
 import Firebase
 
 class FollowService: ObservableObject {
+    // MARK: Merthod
     func updateFollowCount(userId: String, followingCount: @escaping(_ followingCount: Int) -> Void, followersCount: @escaping(_ followersCount: Int) -> Void) {
         
         ProfileService.followingCollection(userId: userId).getDocuments {

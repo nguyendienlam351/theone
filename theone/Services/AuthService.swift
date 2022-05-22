@@ -12,12 +12,14 @@ import FirebaseStorage
 import FirebaseFirestore
 
 class AuthService {
+    // MARK: Properties
     static var storeRoot = Firestore.firestore()
     
     static func getUserId(userId: String) -> DocumentReference {
         return storeRoot.collection("users").document(userId)
     }
     
+    // MARK: Merthod
     static func signUp(username: String, email: String, password: String, imageData: Data, onSuccess: @escaping(_ user: User) -> Void, onError: @escaping(_ errorMessage: String) -> Void) {
         Auth.auth().createUser(withEmail: email, password: password) {
             (authData, error) in

@@ -8,6 +8,7 @@
 import SwiftUI
 
 struct PostView: View {
+    // MARK: Properties
     @State private var postImage: Image?
     @State private var pickedImage: Image?
     @State private var showingActionSheet = false
@@ -19,6 +20,12 @@ struct PostView: View {
     @State private var alertTitle: String = "Message"
     @State private var text = ""
     
+    // MARK: Constructor
+    init() {
+        UITextView.appearance().backgroundColor = .clear
+    }
+    
+    // MARK: Merthod
     func loadImage() {
         guard let inputImage = pickedImage else {
             return
@@ -61,13 +68,12 @@ struct PostView: View {
         }
     }
     
+    // MARK: View
     var body: some View {
-        
         ZStack {
-            Color.black.edgesIgnoringSafeArea(.all)
+            Color.backgroundColor.edgesIgnoringSafeArea(.all)
             ScrollView {
                 Text("Upload A Post").font(.largeTitle).foregroundColor(.primary)
-                
                 VStack {
                     if postImage != nil {
                         postImage!.resizable()
@@ -85,20 +91,19 @@ struct PostView: View {
                             }
                     }
                 }
-                
-                ZStack {
-                    Color.thirdly
-                TextEditor(text: $text)
-                    .padding(4)
-                    .foregroundColor(.primary)
-                    .textFieldStyle(PlainTextFieldStyle())
-                    .background(Color.clear)
-                }
-                .frame(height: 200)
-                .background(
-                        RoundedRectangle(cornerRadius: 5)
-                            .stroke(Color.secondary, lineWidth: 2)
-                    )
+                VStack {
+                    TextEditor(text: $text)
+                        .frame(height: 200, alignment: .center)
+                        .lineSpacing(10)
+                        .autocapitalization(.words)
+                        .disableAutocorrection(true)
+                        .foregroundColor(Color.primary)
+                        .padding()
+                    
+                }.overlay(
+                    RoundedRectangle(cornerRadius: 20)
+                        .stroke(Color.secondary, lineWidth: 3)
+                )
                 
                 Button(action: uploadPost) {
                     Text("Upload Post").font(.title).bold().modifier(ButtonModifiers())

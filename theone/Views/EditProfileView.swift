@@ -10,6 +10,7 @@ import Firebase
 import SDWebImageSwiftUI
 
 struct EditProfileView: View {
+    // MARK: Properties
     @EnvironmentObject var session: SessionStore
     @State private var username: String = ""
     @State private var profileImage: Image?
@@ -28,6 +29,8 @@ struct EditProfileView: View {
         _bio = State(initialValue: session?.bio ?? "")
         _username = State(initialValue: session?.username ?? "")
     }
+    
+    // MARK: Merthod
     func loadImage() {
         guard let inputImage = pickedImage else {
             return
@@ -79,10 +82,10 @@ struct EditProfileView: View {
         return
     }
     
-    
+    // MARK: View
     var body: some View {
         ZStack {
-            Color.black.edgesIgnoringSafeArea(.all)
+            Color.backgroundColor.edgesIgnoringSafeArea(.all)
             ScrollView {
                 VStack(spacing: 20) {
                     Text("Edit profile").font(.largeTitle).foregroundColor(.primary)

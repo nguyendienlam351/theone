@@ -8,7 +8,7 @@
 import SwiftUI
 
 struct HomeView: View {
-    
+    // MARK: Contructor
     init() {
         UISegmentedControl.appearance().selectedSegmentTintColor = .primary
         UISegmentedControl.appearance().setTitleTextAttributes([.foregroundColor: UIColor.thirdly], for: .selected)
@@ -16,6 +16,7 @@ struct HomeView: View {
         UISegmentedControl.appearance().backgroundColor = .thirdly
     }
     
+    // MARK: View
     var body: some View {
         VStack {
             NavigationView {

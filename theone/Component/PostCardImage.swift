@@ -7,25 +7,49 @@
 
 import SwiftUI
 import SDWebImageSwiftUI
+import Firebase
 
 struct PostCardImage: View {
+    // MARK: Properties
     var post: PostModel
+    var user: User
+    @State var isLinkActive = false
     
+    init(post: PostModel) {
+        self.post = post
+        self.user = User(uid: post.ownerId, email: "", profileImageUrl: post.profile, username: post.username, bio: "")
+    }
+    
+    func navigationUser() {
+        if post.ownerId != Auth.auth().currentUser!.uid {
+            self.isLinkActive = true
+        }
+    }
+    
+    // MARK: View
     var body: some View {
         VStack(alignment: .leading) {
             HStack {
-                WebImage(url: URL(string: post.profile)!)
-                    .resizable()
-                    .aspectRatio(contentMode: /*@START_MENU_TOKEN@*/.fill/*@END_MENU_TOKEN@*/)
-                    .scaledToFill()
-                    .clipShape(/*@START_MENU_TOKEN@*/Circle()/*@END_MENU_TOKEN@*/)
-                    .frame(width: 50, height: 50, alignment: .center)
-                    .shadow(color: .secondary, radius: 3).padding(.leading)
-                
-                VStack(alignment: .leading, spacing: 4) {
-                    Text(post.username).font(.headline).foregroundColor(.primary)
-                    Text(Date(timeIntervalSince1970: post.date).timeAgo() + " ago").font(.subheadline)
-                        .foregroundColor(.secondary)
+                NavigationLink(destination: UsersProfileView(user: user), isActive: $isLinkActive) {
+                    WebImage(url: URL(string: post.profile)!)
+                        .resizable()
+                        .aspectRatio(contentMode: /*@START_MENU_TOKEN@*/.fill/*@END_MENU_TOKEN@*/)
+                        .scaledToFill()
+                        .clipShape(/*@START_MENU_TOKEN@*/Circle()/*@END_MENU_TOKEN@*/)
+                        .frame(width: 50, height: 50, alignment: .center)
+                        .shadow(color: .secondary, radius: 3).padding(.leading)
+                        .onTapGesture {
+                            navigationUser()
+                        }
+                    
+                    VStack(alignment: .leading, spacing: 4) {
+                        Text(post.username).font(.headline).foregroundColor(.primary)
+                            .onTapGesture {
+                                navigationUser()
+                            }
+                        Text(Date(timeIntervalSince1970: post.date).timeAgo() + " ago").font(.subheadline)
+                            .foregroundColor(.secondary)
+                    }
                 }
                 
             }.padding(.top, 16)
@@ -39,6 +63,8 @@ struct PostCardImage: View {
                 .aspectRatio(contentMode: .fill)
                 .frame(width: UIScreen.main.bounds.size.width, height: 400, alignment: /*@START_MENU_TOKEN@*/.center/*@END_MENU_TOKEN@*/)
                 .clipped()
+        }.onAppear {
+            self.isLinkActive = false
         }
     }
 }

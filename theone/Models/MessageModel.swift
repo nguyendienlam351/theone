@@ -8,6 +8,7 @@
 import Foundation
 
 struct MessageModel: Encodable, Decodable, Identifiable {
+    // MARK: Properties
     var id = UUID()
     var lastMessage: String
     var username: String

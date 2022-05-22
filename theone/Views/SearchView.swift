@@ -9,10 +9,12 @@ import SwiftUI
 import SDWebImageSwiftUI
 
 struct SearchView: View {
+    // MARK: Properties
     @State private var value: String = ""
     @State var users: [User] = []
     @State var isLoading = false
     
+    // MARK: Merthod
     func searchUser() {
         isLoading = true
         
@@ -23,9 +25,10 @@ struct SearchView: View {
         }
     }
     
+    // MARK: View
     var body: some View {
         ZStack {
-            Color.black.edgesIgnoringSafeArea(.all)
+            Color.backgroundColor.edgesIgnoringSafeArea(.all)
             ScrollView {
                 VStack(alignment: .leading) {
                     SearchBar(users: $users, value: $value).padding(.vertical)

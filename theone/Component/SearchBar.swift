@@ -8,6 +8,7 @@
 import SwiftUI
 
 struct SearchBar: View {
+    // MARK: Properties
     @Binding var users: [User]
     @Binding var value: String
     @State var isSearching = false
@@ -17,6 +18,7 @@ struct SearchBar: View {
         users.removeAll()
     }
     
+    // MARK: View
     var body: some View {
         HStack {
             TextField("", text: $value)

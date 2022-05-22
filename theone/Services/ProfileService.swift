@@ -9,6 +9,7 @@ import Foundation
 import Firebase
 
 class ProfileService: ObservableObject {
+    // MARK: Properties
     @Published var posts: [PostModel] = []
     @Published var following = 0
     @Published var followers = 0
@@ -18,6 +19,8 @@ class ProfileService: ObservableObject {
     static var following = AuthService.storeRoot.collection("following")
     static var followers = AuthService.storeRoot.collection("followers")
     
+    
+    // MARK: Merthod
     static func followingCollection(userId: String) -> CollectionReference {
         return following.document(userId).collection("following")
     }

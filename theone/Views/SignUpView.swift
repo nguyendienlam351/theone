@@ -8,6 +8,7 @@
 import SwiftUI
 
 struct SignUpView: View {
+    // MARK: Properties
     @Environment(\.presentationMode) var presentationMode: Binding<PresentationMode>
     @State private var email: String = ""
     @State private var password: String = ""
@@ -22,7 +23,7 @@ struct SignUpView: View {
     @State private var showingAlert = false
     @State private var alertTitle: String = "Message"
     
-    
+    // MARK: Merthod
     func loadImage() {
         guard let inputImage = pickedImage else {
             return
@@ -68,9 +69,10 @@ struct SignUpView: View {
         }
     }
     
+    // MARK: View
     var body: some View {
         ZStack {
-            Color.black.edgesIgnoringSafeArea(.all)
+            Color.backgroundColor.edgesIgnoringSafeArea(.all)
             ScrollView {
                 VStack(spacing: 20) {
                     VStack(alignment: .center) {

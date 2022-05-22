@@ -9,8 +9,10 @@ import SwiftUI
 import SDWebImageSwiftUI
 
 struct CommentCard: View {
+    // MARK: Properties
     var comment: CommentModel
     
+    // MARK: View
     var body: some View {
         HStack {
             WebImage(url: URL(string: comment.profile)!)

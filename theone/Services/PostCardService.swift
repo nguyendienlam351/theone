@@ -10,9 +10,11 @@ import Firebase
 import SwiftUI
 
 class PostCardService: ObservableObject {
+    // MARK: Properties
     @Published var post: PostModel!
     @Published var isLiked = false
     
+    // MARK: Merthod
     func hasLikePost() {
         if Auth.auth().currentUser?.uid != nil {
             isLiked = (post.likes["\(Auth.auth().currentUser!.uid)"] == true) ? true : false
@@ -28,9 +30,6 @@ class PostCardService: ObservableObject {
         
         PostService.AllPost.document(post.postId)
             .updateData(["likeCount": post.likeCount, "likes.\(Auth.auth().currentUser!.uid)": true])
-        
-        PostService.timelineUserId(userId: post.postId).collection("timeline").document(post.postId)
-            .updateData(["likeCount": post.likeCount, "likes.\(Auth.auth().currentUser!.uid)": true])
     }
     
     func unLike() {
@@ -43,7 +42,5 @@ class PostCardService: ObservableObject {
         PostService.AllPost.document(post.postId)
             .updateData(["likeCount": post.likeCount, "likes.\(Auth.auth().currentUser!.uid)": false])
         
-        PostService.timelineUserId(userId: post.postId).collection("timeline").document(post.postId)
-            .updateData(["likeCount": post.likeCount, "likes.\(Auth.auth().currentUser!.uid)": false])
     }
 }

@@ -11,12 +11,14 @@ import FirebaseAuth
 import FirebaseStorage
 
 class StorageService {
+    // MARK: Properties
     static var storage = Storage.storage()
     static var storageRoot = storage.reference()
     static var storageProfile = storageRoot.child("profile")
     static var storagePost = storageRoot.child("posts")
     static var storageChat = storageRoot.child("chat")
     
+    // MARK: Merthod
     static func storagePostId(postId: String) -> StorageReference {
         return storagePost.child(postId)
     }
@@ -136,8 +138,6 @@ class StorageService {
                             onError(error!.localizedDescription)
                             return
                         }
-                        
-                        PostService.timelineUserId(userId: userId).collection("timeline").document(postId).setData(dict)
                         
                         PostService.AllPost.document(postId).setData(dict)
                         onSuccess()

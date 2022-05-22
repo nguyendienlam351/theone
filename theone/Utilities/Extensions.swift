@@ -7,6 +7,7 @@
 
 import SwiftUI
 
+// MARK: View
 extension View {
     func placeholder<Content: View>(
         when shouldShow: Bool,
@@ -18,8 +19,14 @@ extension View {
             self
         }
     }
+    
+    func navigationBarColor(backgroundColor: UIColor?, titleColor: UIColor?) -> some View {
+        self.modifier(NavigationBarModifier(backgroundColor: backgroundColor, titleColor: titleColor))
+    }
+
 }
 
+// MARK: Encodable
 extension Encodable {
     func asDictionary() throws -> [String: Any] {
         let data = try JSONEncoder().encode(self)
@@ -33,6 +40,7 @@ extension Encodable {
 }
 
 
+// MARK: Decodable
 extension Decodable {
     init(fromDictionary: Any) throws {
         let data = try JSONSerialization.data(withJSONObject: fromDictionary, options: .prettyPrinted)
@@ -41,7 +49,7 @@ extension Decodable {
     }
 }
 
-
+// MARK: String
 extension String {
     func splitsString() -> [String] {
         var stringArray: [String] = []
@@ -61,6 +69,7 @@ extension String {
     }
 }
 
+// MARK: Date
 extension Date {
     func timeAgo() -> String {
         let formater = DateComponentsFormatter()
@@ -72,6 +81,7 @@ extension Date {
     }
 }
 
+// MARK: UIColor
 extension UIColor {
     convenience init(hexString: String) {
         let hex = hexString.trimmingCharacters(in: CharacterSet.alphanumerics.inverted)
@@ -94,19 +104,13 @@ extension UIColor {
     static let primary = UIColor(hexString: "E85626")
     static let secondary = UIColor(hexString: "AF2D23")
     static let thirdly = UIColor(hexString: "606060")
+    static let backgroundColor = UIColor.black
 }
 
+// MARK: Color
 extension Color {
     static let primary = Color(UIColor(hexString: "E85626"))
     static let secondary = Color(UIColor(hexString: "AF2D23"))
     static let thirdly = Color(UIColor(hexString: "606060"))
-}
-
-
-extension View {
-
-    func navigationBarColor(backgroundColor: UIColor?, titleColor: UIColor?) -> some View {
-        self.modifier(NavigationBarModifier(backgroundColor: backgroundColor, titleColor: titleColor))
-    }
-
+    static let backgroundColor = Color(UIColor.black)
 }

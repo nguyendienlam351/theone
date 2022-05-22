@@ -8,12 +8,14 @@
 import SwiftUI
 
 struct SignInView: View {
+    // MARK: Properties
     @State private var email: String = ""
     @State private var password: String = ""
     @State private var error: String = ""
     @State private var showingAlert = false
     @State private var alertTitle: String = "Message"
     
+    // MARK: Merthod
     func errorCheck() -> String? {
         if email.trimmingCharacters(in: .whitespaces).isEmpty ||
             password.trimmingCharacters(in: .whitespaces).isEmpty {
@@ -46,11 +48,11 @@ struct SignInView: View {
         }
     }
     
-    
+    // MARK: View
     var body: some View {
         NavigationView {
             ZStack {
-                Color.black.edgesIgnoringSafeArea(.all)
+                Color.backgroundColor.edgesIgnoringSafeArea(.all)
                 VStack(spacing: 20) {
                     Image("logo").resizable()
                         .scaledToFit()

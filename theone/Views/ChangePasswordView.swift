@@ -8,6 +8,7 @@
 import SwiftUI
 
 struct ChangePasswordView: View {
+    // MARK: Properties
     @State private var password: String = ""
     @State private var newPassword: String = ""
     @State private var confirmPassword: String = ""
@@ -15,6 +16,7 @@ struct ChangePasswordView: View {
     @State private var showingAlert = false
     @State private var alertTitle: String = "Message"
     
+    // MARK: Merthod
     func errorCheck() -> String? {
         if password.trimmingCharacters(in: .whitespaces).isEmpty ||
             newPassword.trimmingCharacters(in: .whitespaces).isEmpty ||
@@ -54,9 +56,10 @@ struct ChangePasswordView: View {
         })
     }
     
+    // MARK: View
     var body: some View {
         ZStack{
-            Color.black.edgesIgnoringSafeArea(.all)
+            Color.backgroundColor.edgesIgnoringSafeArea(.all)
             ScrollView {
                 VStack(spacing: 20) {
                     Text("Change Password").font(.largeTitle).foregroundColor(.primary)

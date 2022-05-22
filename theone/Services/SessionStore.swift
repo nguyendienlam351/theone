@@ -11,6 +11,7 @@ import Firebase
 import FirebaseAuth
 
 class SessionStore: ObservableObject {
+    // MARK: Properties
     var didChange = PassthroughSubject<SessionStore, Never>()
     @Published var session: User? {
         didSet{
@@ -19,6 +20,7 @@ class SessionStore: ObservableObject {
     }
     var handle: AuthStateDidChangeListenerHandle?
     
+    // MARK: Merthod
     func listen() {
         handle = Auth.auth().addStateDidChangeListener({
             (auth, user) in

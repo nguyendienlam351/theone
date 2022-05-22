@@ -8,6 +8,7 @@
 import SwiftUI
 
 struct PostCard: View {
+    // MARK: Properties
     @ObservedObject var postCardService = PostCardService()
     
     @State private var animation = false
@@ -16,11 +17,13 @@ struct PostCard: View {
         postCardService.isLiked ? 0.5 : 2.0
     }
     
+    // MARK: Constructor
     init(post: PostModel) {
         self.postCardService.post = post
         self.postCardService.hasLikePost()
     }
     
+    // MARK: View
     var body: some View {
         VStack(alignment: .leading) {
             HStack(spacing: 30) {
@@ -64,6 +67,7 @@ struct PostCard: View {
                     .foregroundColor(.primary)
             }
         }
+        Divider().background(Color.thirdly)
     }
 }
 

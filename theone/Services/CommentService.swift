@@ -9,15 +9,17 @@ import Foundation
 import Firebase
 
 class CommentService: ObservableObject {
+    // MARK: Properties
     @Published var isLoading = false
     @Published var comments: [CommentModel] = []
     var postId: String!
     var listener: ListenerRegistration!
     var post: PostModel!
     
-    
     static var commentsRef = AuthService.storeRoot.collection("comments")
     
+    
+    // MARK: Merthod
     static func commentId(postId: String) -> DocumentReference {
         return commentsRef.document(postId)
     }

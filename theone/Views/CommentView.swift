@@ -8,13 +8,15 @@
 import SwiftUI
 
 struct CommentView: View {
+    // MARK: Properties
     @StateObject var commentService = CommentService()
     var post: PostModel?
     var postId: String?
     
+    // MARK: View
     var body: some View {
         ZStack {
-            Color.black.edgesIgnoringSafeArea(.all)
+            Color.backgroundColor.edgesIgnoringSafeArea(.all)
             VStack {
                 ScrollView {
                     if !commentService.comments.isEmpty {

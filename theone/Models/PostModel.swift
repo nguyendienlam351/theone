@@ -8,6 +8,7 @@
 import Foundation
 
 struct PostModel: Encodable, Decodable {
+    // MARK: Properties
     var caption: String
     var likes: [String: Bool]
     var geoLocation: String

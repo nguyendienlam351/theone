@@ -9,10 +9,13 @@ import SwiftUI
 import SDWebImageSwiftUI
 
 struct CommentInput: View {
+    // MARK: Properties
     @EnvironmentObject var session: SessionStore
     @ObservedObject var commentService = CommentService()
     @State private var text: String = ""
+    @State private var disableEditText = false
     
+    // MARK: Constructor
     init(post: PostModel?, postId: String ) {
         if post != nil {
             commentService.post = post
@@ -22,6 +25,7 @@ struct CommentInput: View {
         }
     }
     
+    // MARK: Merthod
     func handleInput(postId: String) {
         PostService.loadPost(postId: postId) {
             (post) in
@@ -37,6 +41,7 @@ struct CommentInput: View {
         }
     }
     
+    // MARK: View
     var body: some View {
         HStack {
             WebImage(url: URL(string: session.session!.profileImageUrl)!)
@@ -47,15 +52,10 @@ struct CommentInput: View {
                 .shadow(color: .black, radius: 3)
                 .padding(.leading)
             HStack {
-                TextEditor(text: $text)
-                    .frame(height: 50)
-                    .padding(4)
-                    .background(RoundedRectangle(cornerRadius: 8, style: .circular)
-                                    .stroke(Color.black, lineWidth: 2))
+                EditText(value: $text, placeholder: "", height: 50, disable: $disableEditText)
                 
                 Button(action: sendComment) {
-                    Image(systemName: "paperplane").imageScale(.large).padding(.leading)
-                    
+                    Image(systemName: "paperplane").imageScale(.large).padding(.trailing)
                 }
             }
         }

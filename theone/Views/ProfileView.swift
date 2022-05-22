@@ -10,6 +10,7 @@ import FirebaseAuth
 import SDWebImageSwiftUI
 
 struct ProfileView: View {
+    // MARK: Properties
     @EnvironmentObject var session: SessionStore
     @State private var selecttion = 1
     @StateObject var profileService = ProfileService()
@@ -17,9 +18,10 @@ struct ProfileView: View {
     
     let threeItem = [GridItem(), GridItem(), GridItem()]
     
+    // MARK: View
     var body: some View {
         ZStack {
-            Color.black.edgesIgnoringSafeArea(.all)
+            Color.backgroundColor.edgesIgnoringSafeArea(.all)
             ScrollView {
                 VStack{
                     ProfileHeader(user: self.session.session,

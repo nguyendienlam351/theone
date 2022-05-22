@@ -8,6 +8,7 @@
 import SwiftUI
 
 struct ContentView: View {
+    // MARK: Properties
     @EnvironmentObject var session: SessionStore
     
     func listen() {

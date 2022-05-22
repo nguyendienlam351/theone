@@ -10,9 +10,17 @@ import Firebase
 
 
 class ChatService: ObservableObject {
+    // MARK: Properties
+    @Published var isLoaing = false
+    @Published var chats: [ChatModel] = []
+    
+    var listener: ListenerRegistration!
+    var recipientId = ""
+    
     static var chats = AuthService.storeRoot.collection("chats")
     static var messages = AuthService.storeRoot.collection("messages")
     
+    // MARK: Merthod
     static func conversation(sender: String, recipient: String) -> CollectionReference {
         return chats.document(sender).collection("chats").document(recipient).collection("conversation")
     }
@@ -23,6 +31,30 @@ class ChatService: ObservableObject {
     
     static func messagesId(senderId: String, recipientId: String) -> DocumentReference {
         return messages.document(senderId).collection("messages").document(recipientId)
+    }
+    
+    func loadChats() {
+        self.chats = []
+        self.isLoaing = true
+        
+        self.getChats(userId: recipientId, onSuccess: {
+            (chats) in
+            if self.chats.isEmpty {
+                self.chats = chats
+            }
+        }, onError: {
+            (err) in
+            print("Error \(err)")
+        }, newChat: {
+            (chat) in
+            if !self.chats.isEmpty {
+                self.chats.append(chat)
+            }
+        }) {
+            (listener) in
+            self.listener = listener
+        }
+        
     }
     
     func sendMessage(message: String, recipientId: String, recipientProfile: String, recipientName: String, onSuccess: @escaping() -> Void, onError: @escaping(_ error: String) -> Void) {
@@ -135,4 +167,5 @@ class ChatService: ObservableObject {
         }
         listener(listenerChat)
     }
+    
 }

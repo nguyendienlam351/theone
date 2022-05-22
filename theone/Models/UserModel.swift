@@ -8,6 +8,7 @@
 import Foundation
 
 struct User: Encodable, Decodable {
+    // MARK: Properties
     var uid: String
     var email: String
     var profileImageUrl: String

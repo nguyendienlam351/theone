@@ -8,7 +8,7 @@
 import SwiftUI
 
 struct ButtonModifiers: ViewModifier {
-    
+    // MARK: View
     func body(content: Content) -> some View {
         content
             .frame(minWidth: /*@START_MENU_TOKEN@*/0/*@END_MENU_TOKEN@*/, maxWidth: /*@START_MENU_TOKEN@*/.infinity/*@END_MENU_TOKEN@*/)

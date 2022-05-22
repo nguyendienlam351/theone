@@ -9,15 +9,18 @@ import SwiftUI
 import SDWebImageSwiftUI
 
 struct UsersProfileView: View {
+    // MARK: Properties
     var user: User
     @StateObject var profileService = ProfileService()
     @State private var selecttion = 1
+    @State var isLinkActive = false
     
     let threeItem = [GridItem(), GridItem(), GridItem()]
     
+    // MARK: View
     var body: some View {
         ZStack {
-            Color.black.edgesIgnoringSafeArea(.all)
+            Color.backgroundColor.edgesIgnoringSafeArea(.all)
             ScrollView {
                 ProfileHeader(user: user,
                               postsCount: profileService.posts.count,
@@ -56,8 +59,19 @@ struct UsersProfileView: View {
                     }
                 }
             }.navigationBarTitle(Text(self.user.username))
+            .navigationBarItems(trailing:
+                                    NavigationLink(destination:
+                                                    ChatView(recipientId: user.uid,
+                                                             recipientProfile:
+                                                                user.profileImageUrl,
+                                                             recipientUsername: user.username),
+                                                   isActive: $isLinkActive) {
+                                        Button(action: {self.isLinkActive = true}) {
+                                            Image(systemName: "paperplane")
+                                        }})
             .accentColor(.primary)
             .onAppear {
+                self.isLinkActive = false
                 self.profileService.loadUserPost(userId: self.user.uid)
             }
         }

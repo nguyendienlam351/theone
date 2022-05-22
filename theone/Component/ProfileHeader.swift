@@ -9,11 +9,13 @@ import SwiftUI
 import SDWebImageSwiftUI
 
 struct ProfileHeader: View {
+    // MARK: Properties
     var user: User?
     var postsCount: Int
     @Binding var following: Int
     @Binding var followers: Int
     
+    // MARK: View
     var body: some View {
         HStack {
             VStack {

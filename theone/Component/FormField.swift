@@ -8,11 +8,13 @@
 import SwiftUI
 
 struct FormField: View {
+    // MARK: Properties
     @Binding var value: String
     var icon: String
     var placeholder: String
     var isSecure = false
     
+    // MARK: View
     var body: some View {
         Group {
             HStack {
