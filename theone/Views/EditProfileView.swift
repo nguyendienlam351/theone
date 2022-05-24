@@ -40,8 +40,7 @@ struct EditProfileView: View {
     
     func errorCheck() -> String? {
         if username.trimmingCharacters(in: .whitespaces).isEmpty ||
-            bio.trimmingCharacters(in: .whitespaces).isEmpty ||
-            imageData.isEmpty {
+            bio.trimmingCharacters(in: .whitespaces).isEmpty {
             
             return "Please fill in all  fields and provide an image"
         }
@@ -66,17 +65,27 @@ struct EditProfileView: View {
             return
         }
         
-        let storageProfileUserId = StorageService.storageProfileId(userId: userId)
-        
-        let metadata = StorageMetadata()
-        metadata.contentType = "image/jpg"
-        
-        StorageService.editProfile(userId: userId, username: username, bio: bio, imageData: imageData, metaData: metadata, storageProfileImageRef: storageProfileUserId, onError: {
-            (errorMessage) in
-            self.error = errorMessage
-            self.showingAlert = true
-            return
-        })
+        if imageData.isEmpty {
+            ProfileService.editProfileWithoutImage(userId: userId, username: username, bio: bio, onError: {
+                (errorMessage) in
+                self.error = errorMessage
+                self.showingAlert = true
+                return
+            })
+        }
+        else {
+            let storageProfileUserId = StorageService.storageProfileId(userId: userId)
+            
+            let metadata = StorageMetadata()
+            metadata.contentType = "image/jpg"
+            
+            StorageService.editProfile(userId: userId, username: username, bio: bio, imageData: imageData, metaData: metadata, storageProfileImageRef: storageProfileUserId, onError: {
+                (errorMessage) in
+                self.error = errorMessage
+                self.showingAlert = true
+                return
+            })
+        }
         self.error = "Successful"
         self.showingAlert = true
         return
@@ -128,8 +137,8 @@ struct EditProfileView: View {
                     NavigationLink(
                         destination: ChangePasswordView(), isActive: $isLinkActive) {
                         Button(action: {self.isLinkActive = true}) {
-                        Text("Change Password").font(/*@START_MENU_TOKEN@*/.title/*@END_MENU_TOKEN@*/).bold().modifier(ButtonModifiers())
-                    }
+                            Text("Change Password").font(/*@START_MENU_TOKEN@*/.title/*@END_MENU_TOKEN@*/).bold().modifier(ButtonModifiers())
+                        }
                     }
                     Text("Changes will be effected the next time you log in.").foregroundColor(.secondary)
                 }.padding(.horizontal).padding(.vertical)

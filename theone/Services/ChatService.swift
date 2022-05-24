@@ -18,19 +18,10 @@ class ChatService: ObservableObject {
     var recipientId = ""
     
     static var chats = AuthService.storeRoot.collection("chats")
-    static var messages = AuthService.storeRoot.collection("messages")
     
     // MARK: Merthod
     static func conversation(sender: String, recipient: String) -> CollectionReference {
         return chats.document(sender).collection("chats").document(recipient).collection("conversation")
-    }
-    
-    static func userMessages(userId: String) -> CollectionReference {
-        return messages.document(userId).collection("messages")
-    }
-    
-    static func messagesId(senderId: String, recipientId: String) -> DocumentReference {
-        return messages.document(senderId).collection("messages").document(recipientId)
     }
     
     func loadChats() {
@@ -84,22 +75,6 @@ class ChatService: ObservableObject {
             
             if error == nil {
                 ChatService.conversation(sender: senderId, recipient: recipientId).document(messageId).setData(dict)
-                
-                let sendMessage = MessageModel(lastMessage: message, username: senderUsername, isPhoto: false, timestamp: Date().timeIntervalSince1970, userId: senderId, profile: senderProfile)
-                
-                let recipientMessage = MessageModel(lastMessage: message, username: recipientName, isPhoto: false, timestamp: Date().timeIntervalSince1970, userId: recipientId, profile: recipientProfile)
-                
-                guard let senderDict = try? sendMessage.asDictionary() else {
-                    return
-                }
-                
-                guard let recipientDict = try? recipientMessage.asDictionary() else {
-                    return
-                }
-                
-                ChatService.messagesId(senderId: senderId, recipientId: recipientId).setData(senderDict)
-                
-                ChatService.messagesId(senderId: recipientId, recipientId:  senderId).setData(recipientDict)
                 
                 onSuccess()
             }

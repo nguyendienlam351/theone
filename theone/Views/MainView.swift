@@ -29,7 +29,6 @@ struct MainView: View {
             }.navigationTitle("The One")
             .navigationBarColor(backgroundColor: .thirdly, titleColor: .primary)
             .onAppear{
-//                self.profileService.loadUserPost(userId: Auth.auth().currentUser!.uid)
                 PostService.loadAllPost() {
                     posts in
                     

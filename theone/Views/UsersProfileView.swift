@@ -26,6 +26,9 @@ struct UsersProfileView: View {
                               postsCount: profileService.posts.count,
                               following: $profileService.following,
                               followers: $profileService.followers)
+                VStack(alignment: .leading) {
+                    Text(user.bio).font(.headline).lineLimit(1).foregroundColor(Color.primary)
+                }
                 HStack {
                     FollowButton(user: user, followCheck: $profileService.followCheck, followingCount: $profileService.following, followersCount: $profileService.followers)
                 }.padding(.horizontal)

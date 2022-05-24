@@ -90,7 +90,6 @@ class AuthService {
     }
     
     static func forgotPassword(email: String, onSuccess: @escaping() -> Void, onError: @escaping(_ errorMessage: String) -> Void) {
-        print(email)
         Auth.auth().sendPasswordReset(withEmail: email) {
             error in
             if error != nil {

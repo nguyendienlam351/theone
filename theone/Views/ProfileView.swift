@@ -30,7 +30,7 @@ struct ProfileView: View {
                                   followers: $profileService.followers)
                     
                     VStack(alignment: .leading) {
-                        Text(session.session?.bio ?? "").font(.headline).lineLimit(1)
+                        Text(session.session?.bio ?? "").font(.headline).lineLimit(1).foregroundColor(Color.primary)
                     }
                     NavigationLink(destination: EditProfileView(session: self.session.session), isActive: $isLinkActive) {
                         Button(action: {self.isLinkActive = true}) {

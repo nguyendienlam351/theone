@@ -172,23 +172,7 @@ class StorageService {
                         
                         if error == nil {
                             ChatService.conversation(sender: senderId, recipient: recipientId).document(messageId).setData(dict)
-                            
-                            let sendMessage = MessageModel(lastMessage: "", username: senderUsername, isPhoto: true, timestamp: Date().timeIntervalSince1970, userId: senderId, profile: senderProfile)
-                            
-                            let recipientMessage = MessageModel(lastMessage: "", username: recipientName, isPhoto: false, timestamp: Date().timeIntervalSince1970, userId: recipientId, profile: recipientProfile)
-                            
-                            guard let senderDict = try? sendMessage.asDictionary() else {
-                                return
-                            }
-                            
-                            guard let recipientDict = try? recipientMessage.asDictionary() else {
-                                return
-                            }
-                            
-                            ChatService.messagesId(senderId: senderId, recipientId: recipientId).setData(senderDict)
-                            
-                            ChatService.messagesId(senderId: recipientId, recipientId:  senderId).setData(recipientDict)
-                            
+
                             onSuccess()
                         }
                         else {

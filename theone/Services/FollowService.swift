@@ -29,16 +29,6 @@ class FollowService: ObservableObject {
         }
     }
     
-    func manageFollow(userId: String, followCheck: Bool, followingCount: @escaping(_ followingCount: Int) -> Void, followersCount: @escaping(_ followersCount: Int) -> Void) {
-        
-        if !followCheck {
-            follow(userId: userId, followingCount: followingCount, followersCount: followersCount)
-        }
-        else {
-            unfollow(userId: userId, followingCount: followingCount, followersCount: followersCount)
-        }
-    }
-    
     func follow(userId: String, followingCount: @escaping(_ followingCount: Int) -> Void, followersCount: @escaping(_ followersCount: Int) -> Void) {
         ProfileService.followingId(userId: userId).setData([:]) {
             (err) in

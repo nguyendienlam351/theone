@@ -35,7 +35,6 @@
 		056963F8282314E70093E2D2 /* PostModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 056963F7282314E70093E2D2 /* PostModel.swift */; };
 		056963FB282319030093E2D2 /* PostService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 056963FA282319030093E2D2 /* PostService.swift */; };
 		056AECA728320211008E3CC5 /* ChatModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 056AECA628320211008E3CC5 /* ChatModel.swift */; };
-		056AECAA283204D7008E3CC5 /* MessageModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 056AECA9283204D7008E3CC5 /* MessageModel.swift */; };
 		056AECB128320639008E3CC5 /* ChatService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 056AECB028320639008E3CC5 /* ChatService.swift */; };
 		056E85FE28279A4E009398DC /* PostCardImage.swift in Sources */ = {isa = PBXBuildFile; fileRef = 056E85FD28279A4E009398DC /* PostCardImage.swift */; };
 		056E860128279EF9009398DC /* PostCard.swift in Sources */ = {isa = PBXBuildFile; fileRef = 056E860028279EF9009398DC /* PostCard.swift */; };
@@ -88,7 +87,6 @@
 		056963F7282314E70093E2D2 /* PostModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PostModel.swift; sourceTree = "<group>"; };
 		056963FA282319030093E2D2 /* PostService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PostService.swift; sourceTree = "<group>"; };
 		056AECA628320211008E3CC5 /* ChatModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChatModel.swift; sourceTree = "<group>"; };
-		056AECA9283204D7008E3CC5 /* MessageModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MessageModel.swift; sourceTree = "<group>"; };
 		056AECB028320639008E3CC5 /* ChatService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChatService.swift; sourceTree = "<group>"; };
 		056E85FD28279A4E009398DC /* PostCardImage.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PostCardImage.swift; sourceTree = "<group>"; };
 		056E860028279EF9009398DC /* PostCard.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PostCard.swift; sourceTree = "<group>"; };
@@ -144,7 +142,6 @@
 				056963F7282314E70093E2D2 /* PostModel.swift */,
 				056392EF282DF07100B05E79 /* CommentModel.swift */,
 				056AECA628320211008E3CC5 /* ChatModel.swift */,
-				056AECA9283204D7008E3CC5 /* MessageModel.swift */,
 			);
 			path = Models;
 			sourceTree = "<group>";
@@ -405,7 +402,6 @@
 				0571D3B5282BC9C60078B0CE /* SearchView.swift in Sources */,
 				056392F0282DF07200B05E79 /* CommentModel.swift in Sources */,
 				056F221D283463BA0047BC5F /* ChangePasswordView.swift in Sources */,
-				056AECAA283204D7008E3CC5 /* MessageModel.swift in Sources */,
 				05CE0CA1282FDE0D00A52C3E /* CommentView.swift in Sources */,
 				056392ED282D139F00B05E79 /* UsersProfileView.swift in Sources */,
 				055F0FE92839DE46003B939E /* ChatMessageCard.swift in Sources */,

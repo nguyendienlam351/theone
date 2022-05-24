@@ -80,4 +80,12 @@ class ProfileService: ObservableObject {
             }
         }
     }
+    
+    static func editProfileWithoutImage(userId: String, username: String, bio: String, onError: @escaping(_ errorMessage: String) -> Void) {
+        let editUserId = AuthService.getUserId(userId: userId)
+        editUserId.updateData([
+            "username": username,
+            "bio": bio
+        ])
+    }
 }
